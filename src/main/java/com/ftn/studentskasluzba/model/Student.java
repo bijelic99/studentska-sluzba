@@ -10,6 +10,7 @@ import java.util.Set;
 public class Student implements ApplicationUser{
     private Long id;
     private UserGeneralData userGeneralData;
-    private Set<Document> documents;
-    private Account account;
+    private StudentsAccount studentsAccount;
+    private Set<StudentsDocument> studentsDocuments;
+    private Set<CourseEnrolment> courseEnrolments;
 }

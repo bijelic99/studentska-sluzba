@@ -7,10 +7,10 @@ import java.util.Set;
 
 @Data
 @AllArgsConstructor
-public class Enrolment {
+public class StudentsAccount {
     private Long id;
+    private Double amount;
     private Student student;
-    private Course course;
-    private Set<CourseAdditionalPointsEnrolment> additionalPointsEnrolments;
-    private Set<ExamEnrolment> examEnrolments;
+    private Set<Payment> payments;
+    private Set<Expense> expenses;
 }
