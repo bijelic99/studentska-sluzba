@@ -1,9 +1,14 @@
 package com.ftn.studentskasluzba.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.joda.time.DateTime;
 
-public interface Expense {
-    Double getAmount();
-    DateTime getTimestamp();
-    StudentsAccount getAccount();
+import javax.persistence.Entity;
+
+@Data
+@AllArgsConstructor
+@Entity
+public class Expense extends Transaction {
+
 }
