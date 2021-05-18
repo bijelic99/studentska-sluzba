@@ -1,14 +1,15 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class StudentsDocument extends BaseAbstractClass {
     private String title;

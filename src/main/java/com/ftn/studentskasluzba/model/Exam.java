@@ -1,7 +1,6 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -12,8 +11,10 @@ import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Exam extends BaseAbstractClass {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")

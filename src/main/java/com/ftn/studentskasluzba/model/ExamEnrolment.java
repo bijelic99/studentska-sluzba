@@ -1,7 +1,6 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -10,8 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class ExamEnrolment extends BaseAbstractClass {
     @ManyToOne

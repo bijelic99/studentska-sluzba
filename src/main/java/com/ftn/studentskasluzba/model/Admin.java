@@ -1,12 +1,13 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Admin extends BaseAbstractClass implements ApplicationUser {
     @Embedded

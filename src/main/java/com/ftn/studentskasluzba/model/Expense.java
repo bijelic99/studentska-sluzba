@@ -1,12 +1,12 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @Entity
 public class Expense extends Transaction {

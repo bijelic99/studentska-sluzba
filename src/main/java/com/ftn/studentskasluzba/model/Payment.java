@@ -1,11 +1,11 @@
 package com.ftn.studentskasluzba.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @Entity
 public class Payment extends Transaction {

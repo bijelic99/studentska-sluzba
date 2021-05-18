@@ -4,8 +4,10 @@ import lombok.*;
 
 import javax.persistence.Embeddable;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class UserGeneralData {
     private String email;
