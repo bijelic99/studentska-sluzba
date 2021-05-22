@@ -9,11 +9,16 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class DocumentType extends BaseAbstractClass {
     private String name;
     @OneToMany(mappedBy = "documentType")
     private Set<StudentsDocument> studentsDocumentSet = new HashSet<>();
+
+    public DocumentType(Long id, String name, Set<StudentsDocument> studentsDocumentSet) {
+        super(id);
+        this.name = name;
+        this.studentsDocumentSet = studentsDocumentSet;
+    }
 }

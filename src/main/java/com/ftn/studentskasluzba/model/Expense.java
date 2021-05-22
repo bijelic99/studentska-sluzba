@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 public class Expense extends Transaction {
-
 }

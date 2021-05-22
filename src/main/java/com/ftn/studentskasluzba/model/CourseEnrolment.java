@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class CourseEnrolment extends BaseAbstractClass {
@@ -25,4 +24,12 @@ public class CourseEnrolment extends BaseAbstractClass {
     private Set<CourseAdditionalPointsEnrolment> additionalPointsEnrolments = new HashSet<>();
     @OneToMany(mappedBy = "courseEnrolment")
     private Set<ExamEnrolment> examEnrolments = new HashSet<>();
+
+    public CourseEnrolment(Long id, Student student, Course course, Set<CourseAdditionalPointsEnrolment> additionalPointsEnrolments, Set<ExamEnrolment> examEnrolments) {
+        super(id);
+        this.student = student;
+        this.course = course;
+        this.additionalPointsEnrolments = additionalPointsEnrolments;
+        this.examEnrolments = examEnrolments;
+    }
 }

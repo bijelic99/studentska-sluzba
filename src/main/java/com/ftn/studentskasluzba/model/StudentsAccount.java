@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class StudentsAccount extends BaseAbstractClass {
@@ -20,4 +19,12 @@ public class StudentsAccount extends BaseAbstractClass {
     private Set<Payment> payments = new HashSet<>();
     @OneToMany(mappedBy = "account")
     private Set<Expense> expenses = new HashSet<>();
+
+    public StudentsAccount(Long id, Double amount, Student student, Set<Payment> payments, Set<Expense> expenses) {
+        super(id);
+        this.amount = amount;
+        this.student = student;
+        this.payments = payments;
+        this.expenses = expenses;
+    }
 }

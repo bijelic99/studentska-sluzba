@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Teacher extends BaseAbstractClass {
@@ -21,4 +20,11 @@ public class Teacher extends BaseAbstractClass {
     @ManyToOne
     @JoinColumn(name = "teaching_role_id")
     private TeachingRole teachingRole;
+
+    public Teacher(Long id, Course course, Employee employee, TeachingRole teachingRole) {
+        super(id);
+        this.course = course;
+        this.employee = employee;
+        this.teachingRole = teachingRole;
+    }
 }

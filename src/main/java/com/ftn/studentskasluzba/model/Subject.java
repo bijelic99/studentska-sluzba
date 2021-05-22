@@ -9,7 +9,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Subject extends BaseAbstractClass {
@@ -17,4 +16,11 @@ public class Subject extends BaseAbstractClass {
     private Integer ECTS;
     @OneToMany(mappedBy = "subject")
     private Set<Course> courses = new HashSet<>();
+
+    public Subject(Long id, String title, Integer ECTS, Set<Course> courses) {
+        super(id);
+        this.title = title;
+        this.ECTS = ECTS;
+        this.courses = courses;
+    }
 }

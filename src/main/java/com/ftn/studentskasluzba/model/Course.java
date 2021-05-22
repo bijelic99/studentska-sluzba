@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Course extends BaseAbstractClass {
@@ -29,4 +28,15 @@ public class Course extends BaseAbstractClass {
     private Set<Exam> exams = new HashSet<>();
     @OneToMany(mappedBy = "course")
     private Set<CourseEnrolment> courseEnrolments = new HashSet<>();
+
+    public Course(Long id, DateTime endDate, DateTime startDate, Subject subject, Set<Teacher> teachers, Set<CourseAdditionalPoints> courseAdditionalPoints, Set<Exam> exams, Set<CourseEnrolment> courseEnrolments) {
+        super(id);
+        this.endDate = endDate;
+        this.startDate = startDate;
+        this.subject = subject;
+        this.teachers = teachers;
+        this.courseAdditionalPoints = courseAdditionalPoints;
+        this.exams = exams;
+        this.courseEnrolments = courseEnrolments;
+    }
 }

@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class CourseAdditionalPointsEnrolment extends BaseAbstractClass {
@@ -20,4 +19,12 @@ public class CourseAdditionalPointsEnrolment extends BaseAbstractClass {
     private CourseEnrolment courseEnrolment;
     private Integer points;
     private Boolean passed;
+
+    public CourseAdditionalPointsEnrolment(Long id, CourseAdditionalPoints courseAdditionalPoints, CourseEnrolment courseEnrolment, Integer points, Boolean passed) {
+        super(id);
+        this.courseAdditionalPoints = courseAdditionalPoints;
+        this.courseEnrolment = courseEnrolment;
+        this.points = points;
+        this.passed = passed;
+    }
 }

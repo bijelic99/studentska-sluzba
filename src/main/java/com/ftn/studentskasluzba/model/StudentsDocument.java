@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class StudentsDocument extends BaseAbstractClass {
@@ -20,4 +19,12 @@ public class StudentsDocument extends BaseAbstractClass {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
+
+    public StudentsDocument(Long id, String title, String url, DocumentType documentType, Student student) {
+        super(id);
+        this.title = title;
+        this.url = url;
+        this.documentType = documentType;
+        this.student = student;
+    }
 }

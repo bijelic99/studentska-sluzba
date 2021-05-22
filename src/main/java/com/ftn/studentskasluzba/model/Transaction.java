@@ -10,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
 public abstract class Transaction extends BaseAbstractClass {
@@ -20,4 +19,11 @@ public abstract class Transaction extends BaseAbstractClass {
     @ManyToOne
     @JoinColumn(name = "account_id")
     protected StudentsAccount account;
+
+    public Transaction(Long id, DateTime timestamp, Double amount, StudentsAccount account) {
+        super(id);
+        this.timestamp = timestamp;
+        this.amount = amount;
+        this.account = account;
+    }
 }

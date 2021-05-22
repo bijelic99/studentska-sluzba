@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Employee extends BaseAbstractClass implements ApplicationUser {
@@ -19,4 +18,10 @@ public class Employee extends BaseAbstractClass implements ApplicationUser {
     private UserGeneralData userGeneralData;
     @OneToMany(mappedBy = "employee")
     private Set<Teacher> teacherPositions = new HashSet<>();
+
+    public Employee(Long id, UserGeneralData userGeneralData, Set<Teacher> teacherPositions) {
+        super(id);
+        this.userGeneralData = userGeneralData;
+        this.teacherPositions = teacherPositions;
+    }
 }

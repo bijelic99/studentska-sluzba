@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class ExamEnrolment extends BaseAbstractClass {
@@ -24,4 +23,11 @@ public class ExamEnrolment extends BaseAbstractClass {
     @OneToOne
     @JoinColumn(name = "expense_id")
     private Expense expense;
+
+    public ExamEnrolment(Long id, Exam exam, CourseEnrolment courseEnrolment, Expense expense) {
+        super(id);
+        this.exam = exam;
+        this.courseEnrolment = courseEnrolment;
+        this.expense = expense;
+    }
 }
