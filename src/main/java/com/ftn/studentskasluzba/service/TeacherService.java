@@ -15,9 +15,13 @@ public class TeacherService {
     TeacherRepository teacherRepository;
 
     public Set<Course> getTeachersOngoingCourses(Long teacherId) {
-        return teacherRepository.getTeachersCourses(teacherId)
+        return getTeachersCourses(teacherId)
                 .stream()
-                .filter(c -> new Interval(c.getEndDate(), c.getStartDate()).containsNow())
+                .filter(c -> new Interval(c.getStartDate(), c.getEndDate()).containsNow())
                 .collect(Collectors.toSet());
+    }
+
+    public Set<Course> getTeachersCourses(Long teacherId) {
+        return teacherRepository.getTeachersCourses(teacherId);
     }
 }

@@ -22,4 +22,9 @@ public class TeacherController {
     public Set<CourseDTO> getTeachersOngoingCourses(@PathVariable("id") Long id) {
         return teacherService.getTeachersOngoingCourses(id).stream().map(CourseDTO::new).collect(Collectors.toSet());
     }
+
+    @GetMapping("/{id}/courses")
+    public Set<CourseDTO> getTeachersCourses(@PathVariable("id") Long id) {
+        return teacherService.getTeachersCourses(id).stream().map(CourseDTO::new).collect(Collectors.toSet());
+    }
 }
