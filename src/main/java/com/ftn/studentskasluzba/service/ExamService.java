@@ -12,15 +12,15 @@ public class ExamService {
     @Autowired
     ExamRepository examRepository;
 
-    @Value("${enrollmentFee:200}")
+    @Value("${exam.enrollmentFee:200}")
     private Double enrollmentFee;
 
     public Exam saveExam(Exam exam) {
-        var examToSave = examRepository.findById(exam.getId()).map(existingExam -> {
+        if(exam.getId() == null) exam.setExamEnrolmentFee(enrollmentFee);
+        var examToSave = exam.getId() == null ? exam : examRepository.findById(exam.getId()).map(existingExam -> {
             exam.setExamEnrolments(existingExam.getExamEnrolments());
-            exam.setExamEnrolmentFee(enrollmentFee);
             return exam;
-        }).orElse(exam);
+        }).orElseThrow();
         return examRepository.save(examToSave);
     }
 }

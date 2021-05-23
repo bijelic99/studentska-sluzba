@@ -1,12 +1,13 @@
 package com.ftn.studentskasluzba.controller;
 
 import com.ftn.studentskasluzba.dto.ExamDTO;
+import com.ftn.studentskasluzba.repository.ExamRepository;
 import com.ftn.studentskasluzba.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/exams")
