@@ -8,15 +8,15 @@ import org.joda.time.DateTime;
 import java.util.HashSet;
 
 public record CourseDTO(
-        @JsonProperty("id")
+        @JsonProperty
         Long id,
-        @JsonProperty("endDate")
+        @JsonProperty
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime endDate,
-        @JsonProperty("startDate")
+        @JsonProperty
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime startDate,
-        @JsonProperty("subject")
+        @JsonProperty
         SubjectDTO subject) implements ToModel<Course> {
     public CourseDTO(Course course) {
         this(course.getId(), course.getEndDate(), course.getStartDate(), new SubjectDTO(course.getSubject()));
