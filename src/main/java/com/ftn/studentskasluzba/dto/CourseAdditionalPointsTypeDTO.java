@@ -9,17 +9,15 @@ public record CourseAdditionalPointsTypeDTO(
         @JsonProperty
         Long id,
         @JsonProperty
-        String name,
-        @JsonProperty
-        Boolean passRequired
+        String name
 ) implements ToModel<CourseAdditionalPointsType> {
 
     public CourseAdditionalPointsTypeDTO(CourseAdditionalPointsType courseAdditionalPointsType) {
-        this(courseAdditionalPointsType.getId(), courseAdditionalPointsType.getName(), courseAdditionalPointsType.getPassRequired());
+        this(courseAdditionalPointsType.getId(), courseAdditionalPointsType.getName());
     }
 
     @Override
     public CourseAdditionalPointsType toModel() {
-        return new CourseAdditionalPointsType(id, name, passRequired, new HashSet<>());
+        return new CourseAdditionalPointsType(id, name, new HashSet<>());
     }
 }

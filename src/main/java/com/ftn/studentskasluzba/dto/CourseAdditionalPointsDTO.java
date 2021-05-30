@@ -11,12 +11,14 @@ public record CourseAdditionalPointsDTO(
         @JsonProperty
         String name,
         @JsonProperty
+        Boolean passRequired,
+        @JsonProperty
         CourseDTO course,
         @JsonProperty
         CourseAdditionalPointsTypeDTO courseAdditionalPointsType
 ) implements ToModel<CourseAdditionalPoints> {
     public CourseAdditionalPointsDTO(CourseAdditionalPoints courseAdditionalPoints) {
-        this(courseAdditionalPoints.getId(), courseAdditionalPoints.getName(), new CourseDTO(courseAdditionalPoints.getCourse()), new CourseAdditionalPointsTypeDTO(courseAdditionalPoints.getCourseAdditionalPointsType()));
+        this(courseAdditionalPoints.getId(), courseAdditionalPoints.getName(), courseAdditionalPoints.getPassRequired(), new CourseDTO(courseAdditionalPoints.getCourse()), new CourseAdditionalPointsTypeDTO(courseAdditionalPoints.getCourseAdditionalPointsType()));
     }
 
     @Override
@@ -24,6 +26,7 @@ public record CourseAdditionalPointsDTO(
         return new CourseAdditionalPoints(
                 id,
                 name,
+                passRequired,
                 course.toModel(),
                 courseAdditionalPointsType.toModel(),
                 new HashSet<>()

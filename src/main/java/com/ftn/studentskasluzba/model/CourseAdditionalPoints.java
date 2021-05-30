@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 public class CourseAdditionalPoints extends BaseAbstractClass {
     private String name;
+    private Boolean passRequired;
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -24,9 +25,10 @@ public class CourseAdditionalPoints extends BaseAbstractClass {
     @OneToMany(mappedBy = "courseAdditionalPoints")
     private Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments = new HashSet<>();
 
-    public CourseAdditionalPoints(Long id, String name, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments) {
+    public CourseAdditionalPoints(Long id, String name, Boolean passRequired, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments) {
         super(id);
         this.name = name;
+        this.passRequired = passRequired;
         this.course = course;
         this.courseAdditionalPointsType = courseAdditionalPointsType;
         this.courseAdditionalPointsEnrolments = courseAdditionalPointsEnrolments;
