@@ -89,4 +89,5 @@ public class CourseController {
 
         return new CourseDTO(courseService.saveCourse(providedCourse));
     }
+
 }

@@ -6,11 +6,11 @@ import com.ftn.studentskasluzba.model.CourseEnrolment;
 import java.util.HashSet;
 
 public record CourseEnrolmentDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("student")
         StudentDTO student,
-        @JsonProperty
+        @JsonProperty("course")
         CourseDTO course
 ) implements ToModel<CourseEnrolment> {
     public CourseEnrolmentDTO(CourseEnrolment courseEnrolment) {

@@ -7,11 +7,11 @@ import com.ftn.studentskasluzba.model.StudentsAccount;
 import java.util.HashSet;
 
 public record StudentsAccountDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("studentId")
         Long studentId,
-        @JsonProperty
+        @JsonProperty("amount")
         Double amount
 ) implements ToModel<StudentsAccount> {
 

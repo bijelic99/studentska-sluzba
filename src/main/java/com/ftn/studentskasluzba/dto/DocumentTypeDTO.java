@@ -6,9 +6,9 @@ import com.ftn.studentskasluzba.model.DocumentType;
 import java.util.HashSet;
 
 public record DocumentTypeDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("name")
         String name
 ) implements ToModel<DocumentType> {
     public DocumentTypeDTO(DocumentType documentType) {

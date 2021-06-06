@@ -6,11 +6,11 @@ import com.ftn.studentskasluzba.model.Subject;
 import java.util.HashSet;
 
 public record SubjectDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("title")
         String title,
-        @JsonProperty
+        @JsonProperty("ECTS")
         Integer ECTS
 ) implements ToModel<Subject> {
     public SubjectDTO(Subject subject) {

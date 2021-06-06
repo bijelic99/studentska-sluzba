@@ -5,15 +5,15 @@ import com.ftn.studentskasluzba.model.Student;
 import com.ftn.studentskasluzba.model.StudentsDocument;
 
 public record StudentsDocumentDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("student")
         StudentDTO student,
-        @JsonProperty
+        @JsonProperty("title")
         String title,
-        @JsonProperty
+        @JsonProperty("url")
         String url,
-        @JsonProperty
+        @JsonProperty("documentType")
         DocumentTypeDTO documentType
 ) implements ToModel<StudentsDocument> {
     public StudentsDocumentDTO(StudentsDocument studentsDocument) {

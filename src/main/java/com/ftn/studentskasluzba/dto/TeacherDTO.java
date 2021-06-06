@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ftn.studentskasluzba.model.Teacher;
 
 public record TeacherDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("course")
         CourseDTO course,
-        @JsonProperty
+        @JsonProperty("employee")
         EmployeeDTO employee,
-        @JsonProperty
+        @JsonProperty("teachingRole")
         TeachingRoleDTO teachingRole
 ) implements ToModel<Teacher> {
 

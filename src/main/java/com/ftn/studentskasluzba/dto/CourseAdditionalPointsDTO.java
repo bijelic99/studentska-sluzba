@@ -6,15 +6,15 @@ import com.ftn.studentskasluzba.model.CourseAdditionalPoints;
 import java.util.HashSet;
 
 public record CourseAdditionalPointsDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("name")
         String name,
-        @JsonProperty
+        @JsonProperty("passRequired")
         Boolean passRequired,
-        @JsonProperty
+        @JsonProperty("course")
         CourseDTO course,
-        @JsonProperty
+        @JsonProperty("courseAdditionalPointsType")
         CourseAdditionalPointsTypeDTO courseAdditionalPointsType
 ) implements ToModel<CourseAdditionalPoints> {
     public CourseAdditionalPointsDTO(CourseAdditionalPoints courseAdditionalPoints) {

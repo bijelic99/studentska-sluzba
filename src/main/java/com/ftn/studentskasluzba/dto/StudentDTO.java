@@ -7,17 +7,17 @@ import com.ftn.studentskasluzba.model.UserGeneralData;
 import java.util.HashSet;
 
 public record StudentDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("email")
         String email,
-        @JsonProperty
+        @JsonProperty("username")
         String username,
-        @JsonProperty
+        @JsonProperty("firstName")
         String firstName,
-        @JsonProperty
+        @JsonProperty("lastName")
         String lastName,
-        @JsonProperty
+        @JsonProperty("studentsAccount")
         StudentsAccountDTO studentsAccount
 ) implements ToModel<Student> {
     public StudentDTO(Student student) {

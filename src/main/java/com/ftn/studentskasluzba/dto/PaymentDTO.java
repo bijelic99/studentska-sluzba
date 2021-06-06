@@ -6,14 +6,14 @@ import com.ftn.studentskasluzba.model.Payment;
 import org.joda.time.DateTime;
 
 public record PaymentDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("timestamp")
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime timestamp,
-        @JsonProperty
+        @JsonProperty("amount")
         Double amount,
-        @JsonProperty
+        @JsonProperty("studentsAccount")
         StudentsAccountDTO studentsAccount
 ) implements ToModel<Payment> {
     public PaymentDTO(Payment payment) {

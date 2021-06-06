@@ -6,9 +6,9 @@ import com.ftn.studentskasluzba.model.TeachingRole;
 import java.util.HashSet;
 
 public record TeachingRoleDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("name")
         String name
 ) implements ToModel<TeachingRole> {
 

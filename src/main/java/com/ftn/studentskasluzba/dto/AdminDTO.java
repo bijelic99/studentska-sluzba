@@ -8,15 +8,15 @@ import com.ftn.studentskasluzba.model.UserGeneralData;
 import java.util.HashSet;
 
 public record AdminDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("email")
         String email,
-        @JsonProperty
+        @JsonProperty("username")
         String username,
-        @JsonProperty
+        @JsonProperty("firstName")
         String firstName,
-        @JsonProperty
+        @JsonProperty("lastName")
         String lastName
 ) implements ToModel<Admin> {
     public AdminDTO(Admin admin) {

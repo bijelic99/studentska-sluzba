@@ -4,15 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ftn.studentskasluzba.model.CourseAdditionalPointsEnrolment;
 
 public record CourseAdditionalPointsEnrolmentDTO(
-        @JsonProperty
+        @JsonProperty("id")
         Long id,
-        @JsonProperty
+        @JsonProperty("courseAdditionalPoints")
         CourseAdditionalPointsDTO courseAdditionalPoints,
-        @JsonProperty
+        @JsonProperty("courseEnrolment")
         CourseEnrolmentDTO courseEnrolment,
-        @JsonProperty
+        @JsonProperty("points")
         Integer points,
-        @JsonProperty
+        @JsonProperty("passed")
         Boolean passed
 ) implements ToModel<CourseAdditionalPointsEnrolment> {
     public CourseAdditionalPointsEnrolmentDTO(
