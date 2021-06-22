@@ -37,8 +37,8 @@ INSERT INTO course_additional_points_type(id, name) VALUES(1, 'Project');
 INSERT INTO course_additional_points_type(id, name) VALUES(2, 'Colloquium');
 INSERT INTO course_additional_points_type(id, name) VALUES(3, 'Homework');
 
-INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(1, "First Colloquium", true, 1, 2);
-INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(2, "Second Colloquium", true, 1, 2);
+INSERT INTO course_additional_points(id, name, pass_required, course_id, start_datetime, end_datetime, course_additional_points_type_id) VALUES(1, "First Colloquium", true, 1, '2021-06-27 00:00:00', '2021-06-27 00:02:00', 2);
+INSERT INTO course_additional_points(id, name, pass_required, course_id, start_datetime, end_datetime, course_additional_points_type_id) VALUES(2, "Second Colloquium", true, 1, '2021-06-27 00:00:00', '2021-06-27 00:02:00', 2);
 INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(3, "Math homework", false, 3, 3);
 INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(4, "Math homework", false, 4, 3);
 INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(5, "Final project", true, 1, 1);
@@ -77,3 +77,7 @@ INSERT INTO COURSE_ENROLMENT(id, course_id, student_id) VALUES(15, 4, 5);
 
 INSERT INTO COURSE_ENROLMENT(id, course_id, student_id) VALUES(16, 4, 4);
 INSERT INTO COURSE_ENROLMENT(id, course_id, student_id) VALUES(17, 4, 5);
+
+INSERT INTO EXPENSE(id, timestamp, amount, account_id) VALUES(1, '2021-06-29 00:00:00', 15.00, 1);
+
+INSERT INTO EXAM_ENROLMENT(id, exam_id, course_enrolment_id, expense_id) VALUES(1, 1, 1, 1);

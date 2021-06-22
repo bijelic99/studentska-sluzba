@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @Entity
 public class ExamEnrolment extends BaseAbstractClass {
+    private Integer grade = null;
+    private Integer points = null;
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
@@ -24,8 +26,10 @@ public class ExamEnrolment extends BaseAbstractClass {
     @JoinColumn(name = "expense_id")
     private Expense expense;
 
-    public ExamEnrolment(Long id, Exam exam, CourseEnrolment courseEnrolment, Expense expense) {
+    public ExamEnrolment(Long id, Integer grade, Integer points, Exam exam, CourseEnrolment courseEnrolment, Expense expense) {
         super(id);
+        this.grade = grade;
+        this.points = points;
         this.exam = exam;
         this.courseEnrolment = courseEnrolment;
         this.expense = expense;

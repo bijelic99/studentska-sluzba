@@ -1,11 +1,10 @@
 package com.ftn.studentskasluzba.model;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +15,10 @@ import java.util.Set;
 public class CourseAdditionalPoints extends BaseAbstractClass {
     private String name;
     private Boolean passRequired;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime startDatetime;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime endDatetime;
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -25,10 +28,12 @@ public class CourseAdditionalPoints extends BaseAbstractClass {
     @OneToMany(mappedBy = "courseAdditionalPoints")
     private Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments = new HashSet<>();
 
-    public CourseAdditionalPoints(Long id, String name, Boolean passRequired, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments) {
+    public CourseAdditionalPoints(Long id, String name, Boolean passRequired, DateTime startDatetime, DateTime endDatetime, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments) {
         super(id);
         this.name = name;
         this.passRequired = passRequired;
+        this.startDatetime = startDatetime;
+        this.endDatetime = endDatetime;
         this.course = course;
         this.courseAdditionalPointsType = courseAdditionalPointsType;
         this.courseAdditionalPointsEnrolments = courseAdditionalPointsEnrolments;
