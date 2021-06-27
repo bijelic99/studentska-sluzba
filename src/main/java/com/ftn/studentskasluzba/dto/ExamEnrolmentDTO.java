@@ -6,7 +6,9 @@ import com.ftn.studentskasluzba.model.ExamEnrolment;
 public record ExamEnrolmentDTO(
         @JsonProperty("id")
         Long id,
+        @JsonProperty("grade")
         Integer grade,
+        @JsonProperty("points")
         Integer points,
         @JsonProperty("exam")
         ExamDTO exam,

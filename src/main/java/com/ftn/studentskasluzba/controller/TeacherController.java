@@ -1,7 +1,9 @@
 package com.ftn.studentskasluzba.controller;
 
 import com.ftn.studentskasluzba.dto.CourseDTO;
+import com.ftn.studentskasluzba.dto.ExamDTO;
 import com.ftn.studentskasluzba.dto.TeacherDTO;
+import com.ftn.studentskasluzba.repository.ExamRepository;
 import com.ftn.studentskasluzba.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class TeacherController {
 
     @Autowired
     TeacherService teacherService;
+
+    @Autowired
+    ExamRepository examRepository;
 
     @GetMapping("/{id}/courses/ongoing")
     public Set<CourseDTO> getTeachersOngoingCourses(@PathVariable("id") Long id) {
@@ -40,5 +45,10 @@ public class TeacherController {
     @DeleteMapping("/{id}")
     public ResponseEntity<TeacherDTO> deleteTeacher(@PathVariable("id") Long id) {
         return teacherService.removeTeacher(id).map(TeacherDTO::new).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/exams")
+    public Set<ExamDTO> getTeachersExams(@PathVariable("id") Long id) {
+        return examRepository.getTeachersExams(id).stream().map(ExamDTO::new).collect(Collectors.toSet());
     }
 }
