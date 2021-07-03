@@ -81,3 +81,6 @@ INSERT INTO COURSE_ENROLMENT(id, course_id, student_id) VALUES(17, 4, 5);
 INSERT INTO EXPENSE(id, timestamp, amount, account_id) VALUES(1, '2021-06-29 00:00:00', 15.00, 1);
 
 INSERT INTO EXAM_ENROLMENT(id, exam_id, course_enrolment_id, expense_id) VALUES(1, 1, 1, 1);
+
+INSERT INTO course_additional_points_enrolment(id, passed, course_additional_points_id, course_enrolment_id) VALUE(1, 1, 5, 1);
+INSERT INTO course_additional_points_enrolment(id, passed, course_additional_points_id, course_enrolment_id) VALUE(2, 0, 5, 2);
