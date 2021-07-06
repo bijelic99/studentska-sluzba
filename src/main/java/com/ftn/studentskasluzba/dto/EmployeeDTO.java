@@ -2,6 +2,7 @@ package com.ftn.studentskasluzba.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ftn.studentskasluzba.model.Employee;
+import com.ftn.studentskasluzba.model.Role;
 import com.ftn.studentskasluzba.model.UserGeneralData;
 
 import java.util.HashSet;
@@ -16,15 +17,18 @@ public record EmployeeDTO(
         @JsonProperty("firstName")
         String firstName,
         @JsonProperty("lastName")
-        String lastName
-) implements ToModel<Employee> {
+        String lastName,
+        @JsonProperty("role")
+        Role role
+) implements ToModel<Employee>, UserWithRole {
     public EmployeeDTO(Employee employee) {
         this(
                 employee.getId(),
                 employee.getUserGeneralData().getEmail(),
                 employee.getUserGeneralData().getUsername(),
                 employee.getUserGeneralData().getFirstName(),
-                employee.getUserGeneralData().getLastName()
+                employee.getUserGeneralData().getLastName(),
+                Role.EMPLOYEE
         );
     }
 

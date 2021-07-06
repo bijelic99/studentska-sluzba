@@ -1,8 +1,12 @@
 package com.ftn.studentskasluzba.model;
 
+import com.ftn.studentskasluzba.model.security.AllGranted;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -15,5 +19,40 @@ public class Admin extends BaseAbstractClass implements ApplicationUser {
     public Admin(Long id, UserGeneralData userGeneralData) {
         super(id);
         this.userGeneralData = userGeneralData;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new AllGranted());
+    }
+
+    @Override
+    public String getPassword() {
+        return userGeneralData.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return userGeneralData.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

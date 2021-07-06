@@ -1,8 +1,13 @@
 package com.ftn.studentskasluzba.model;
 
+import com.ftn.studentskasluzba.model.security.AllGranted;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Embeddable;
+import java.util.Arrays;
+import java.util.Collection;
 
 @Getter
 @Setter
