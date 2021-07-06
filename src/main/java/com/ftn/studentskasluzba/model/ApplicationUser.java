@@ -1,5 +1,8 @@
 package com.ftn.studentskasluzba.model;
 
-public interface ApplicationUser {
+import org.springframework.security.core.userdetails.UserDetails;
+
+public interface ApplicationUser extends UserDetails {
+    Long getId();
     UserGeneralData getUserGeneralData();
 }

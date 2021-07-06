@@ -1,6 +1,7 @@
 package com.ftn.studentskasluzba.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ftn.studentskasluzba.model.Role;
 import com.ftn.studentskasluzba.model.Student;
 import com.ftn.studentskasluzba.model.UserGeneralData;
 
@@ -18,10 +19,12 @@ public record StudentDTO(
         @JsonProperty("lastName")
         String lastName,
         @JsonProperty("studentsAccount")
-        StudentsAccountDTO studentsAccount
-) implements ToModel<Student> {
+        StudentsAccountDTO studentsAccount,
+        @JsonProperty("role")
+        Role role
+) implements ToModel<Student>, UserWithRole {
     public StudentDTO(Student student) {
-        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()));
+        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()), Role.STUDENT);
     }
 
     @Override
