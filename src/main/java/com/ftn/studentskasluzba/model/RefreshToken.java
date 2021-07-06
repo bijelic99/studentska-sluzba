@@ -10,6 +10,7 @@ import org.joda.time.DateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 @Getter
@@ -21,6 +22,7 @@ public class RefreshToken {
     @Column(name = "refreshToken", unique = true, nullable = false)
     private String refreshToken;
     @Column(name = "currentJwtToken", nullable = false)
+    @Lob
     private String currentJwtToken;
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime expireTime;

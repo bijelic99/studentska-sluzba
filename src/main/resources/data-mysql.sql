@@ -1,4 +1,4 @@
-INSERT INTO ADMIN(id, email, first_name, last_name, password, username) VALUES (1, 'a1@mail.com', 'Admin', 'One', '$2y$12$Ejrxz18IUDZZ1IAWQhimC.mBoTkLl.OkdfcI8TWDoj9Dy2UDes2A2 ', 'aOne'); --password1
+INSERT INTO ADMIN(id, email, first_name, last_name, password, username) VALUES (1, 'a1@mail.com', 'Admin', 'One', '$2a$12$OTsU5brc2YlurIIWGJ5nq.9x8O.KDzExKLxiwwuzyEh9yfOaWs9Ey', 'aOne'); --password1
 
 INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (1, 'e1@mail.com', 'Employe', 'One', '$2y$12$Ejrxz18IUDZZ1IAWQhimC.mBoTkLl.OkdfcI8TWDoj9Dy2UDes2A2 ', 'eOne'); --password1
 INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (2, 'e2@mail.com', 'Employe', 'Two', '$2y$12$Pjgz3E4P43eoUGanEYYFOuY06d/3vUtqqrZ28Jxn0eNel7GsTe6Z2 ', 'eTwo'); --password2
