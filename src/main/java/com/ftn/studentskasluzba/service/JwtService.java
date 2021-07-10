@@ -53,7 +53,13 @@ public class JwtService {
     }
 
     public Boolean isTokenExpired(String token) {
-        return extractExpiration(token).before(new Date());
+        try {
+            return extractExpiration(token).before(new Date());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
     }
 
     public Role getRole(String token) {

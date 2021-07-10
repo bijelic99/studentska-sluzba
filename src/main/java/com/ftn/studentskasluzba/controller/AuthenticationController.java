@@ -6,7 +6,6 @@ import com.ftn.studentskasluzba.dto.UserWithTokens;
 import com.ftn.studentskasluzba.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +30,22 @@ public class AuthenticationController {
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestBody Tokens tokens) {
-        return null;
+        try {
+            authenticationService.logout(tokens);
+            return ResponseEntity.ok("logged out");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Failure during logout");
+        }
     }
 
     @PostMapping("/refresh")
     public ResponseEntity<String> refresh(@RequestBody Tokens tokens) {
-        return null;
+        try {
+            return ResponseEntity.ok(authenticationService.refresh(tokens));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Error while refreshing");
+        }
     }
 }

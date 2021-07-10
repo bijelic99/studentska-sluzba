@@ -3,6 +3,7 @@ package com.ftn.studentskasluzba.service;
 import com.ftn.studentskasluzba.dto.*;
 import com.ftn.studentskasluzba.model.*;
 import com.ftn.studentskasluzba.repository.RefreshTokenRepository;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,7 +63,12 @@ public class AuthenticationService {
     public String refresh(Tokens tokens) throws Exception {
         var dbEntry = refreshTokenRepository.findById(tokens.refreshToken()).orElseThrow();
         if (jwtService.isTokenExpired(tokens.jwtToken()) && dbEntry.getCurrentJwtToken().equals(tokens.jwtToken())) {
-            var username = jwtService.extractUsername(tokens.jwtToken());
+            String username;
+            try {
+                username = jwtService.extractUsername(tokens.jwtToken());
+            } catch (ExpiredJwtException expiredJwtException) {
+                username = expiredJwtException.getClaims().get("username", String.class);
+            }
             var user = (ApplicationUser) userDetailsService.loadUserByUsername(username);
             var newToken = jwtService.generateToken(user);
             dbEntry.setCurrentJwtToken(newToken);
@@ -72,6 +78,7 @@ public class AuthenticationService {
     }
 
     private void putRefreshToken(String refreshToken, String jwtToken) {
+        refreshToken = refreshToken.strip();
         var savedToken = refreshTokenRepository
                 .findById(refreshToken)
                 .map(rt -> {
@@ -86,7 +93,7 @@ public class AuthenticationService {
     @Scheduled(cron = "0 0/1 * * * ?")
     public void cleanExpiredTokens() {
         var expiredTokens = refreshTokenRepository.getExpiredTokens();
-        System.out.println("Deleting " + expiredTokens.size() + " expired tokens" );
+        System.out.println("Deleting " + expiredTokens.size() + " expired tokens");
         refreshTokenRepository.deleteAll(expiredTokens);
     }
 }
