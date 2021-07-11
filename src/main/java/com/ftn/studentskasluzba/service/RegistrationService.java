@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -33,6 +34,9 @@ public class RegistrationService {
     @Value("${registerToken.validityDays:2}")
     Integer registerTokenValidityDays;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public UserWithRole register(NewUserDTO newUser) throws Exception {
         var tokenOpt = registerTokenRepository.findById(newUser.registerToken());
         if (tokenOpt.isPresent()) {
@@ -46,7 +50,7 @@ public class RegistrationService {
                                 new UserGeneralData(
                                         newUser.email(),
                                         newUser.username(),
-                                        newUser.password(),
+                                        passwordEncoder.encode(newUser.password()),
                                         newUser.firstName(),
                                         newUser.lastName()
                                 )
@@ -61,7 +65,7 @@ public class RegistrationService {
                                 new UserGeneralData(
                                         newUser.email(),
                                         newUser.username(),
-                                        newUser.password(),
+                                        passwordEncoder.encode(newUser.password()),
                                         newUser.firstName(),
                                         newUser.lastName()
                                 ),
@@ -91,7 +95,7 @@ public class RegistrationService {
                                 new UserGeneralData(
                                         newUser.email(),
                                         newUser.username(),
-                                        newUser.password(),
+                                        passwordEncoder.encode(newUser.password()),
                                         newUser.firstName(),
                                         newUser.lastName()
                                 ),
