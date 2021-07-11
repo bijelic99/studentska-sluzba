@@ -27,6 +27,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+
+        if(request.getRequestURI().endsWith("authenticate/refresh")){
+            chain.doFilter(request, response);
+            return;
+        }
+
         final var authHeader = request.getHeader("Authorization");
 
         String jwt = null;

@@ -1,6 +1,7 @@
 package com.ftn.studentskasluzba.controller;
 
 import com.ftn.studentskasluzba.dto.Credentials;
+import com.ftn.studentskasluzba.dto.TokenWrapper;
 import com.ftn.studentskasluzba.dto.Tokens;
 import com.ftn.studentskasluzba.dto.UserWithTokens;
 import com.ftn.studentskasluzba.service.AuthenticationService;
@@ -40,12 +41,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<String> refresh(@RequestBody Tokens tokens) {
+    public ResponseEntity<TokenWrapper> refresh(@RequestBody Tokens tokens) {
         try {
-            return ResponseEntity.ok(authenticationService.refresh(tokens));
+            return ResponseEntity.ok(new TokenWrapper(authenticationService.refresh(tokens)));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body("Error while refreshing");
+            return ResponseEntity.badRequest().build();
         }
     }
 }
