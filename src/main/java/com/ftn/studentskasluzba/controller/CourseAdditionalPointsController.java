@@ -28,6 +28,15 @@ public class CourseAdditionalPointsController {
         return new CourseAdditionalPointsDTO(courseAdditionalPointsService.saveCourseAdditionalPoints(providedCourseAdditionalPoints));
     }
 
+    @GetMapping
+    public Collection<CourseAdditionalPointsDTO> getAllAdditionalPoints() {
+        return courseAdditionalPointsRepository
+                .findAll()
+                .stream()
+                .map(CourseAdditionalPointsDTO::new)
+                .collect(Collectors.toSet());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CourseAdditionalPointsDTO> getAdditionalPoints(@PathVariable("id") Long id) {
         return courseAdditionalPointsRepository
@@ -42,7 +51,7 @@ public class CourseAdditionalPointsController {
         return courseAdditionalPointsRepository
                 .findById(id)
                 .stream()
-                .flatMap(x->x.getCourseAdditionalPointsEnrolments().stream())
+                .flatMap(x -> x.getCourseAdditionalPointsEnrolments().stream())
                 .map(CourseAdditionalPointsEnrolmentDTO::new)
                 .collect(Collectors.toSet());
     }
