@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+    command: 
+      --default-authentication-plugin=mysql_native_password 
+      --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8081:80
+      
+  studentska-sluzba:
+    image: studentska-sluzba:0.0.1-SNAPSHOT
+    depends_on:
+      - db
+    ports:
+      - 8020:8020
+    restart: always
+
+  fe:
+    image: e-obrazovanje:latest
+    depends_on:
+      - studentska-sluzba
+    ports:
+      - 80:80
