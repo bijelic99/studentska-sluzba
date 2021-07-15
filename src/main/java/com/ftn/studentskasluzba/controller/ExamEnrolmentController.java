@@ -5,6 +5,7 @@ import com.ftn.studentskasluzba.repository.ExamEnrolmentRepository;
 import com.ftn.studentskasluzba.service.ExamEnrolmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,7 @@ public class ExamEnrolmentController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ExamEnrolmentCreateAndEdit')")
     public ResponseEntity<ExamEnrolmentDTO> putEnrolment(@RequestBody ExamEnrolmentDTO enrolment) {
         return ResponseEntity.ok(new ExamEnrolmentDTO(examEnrolmentService.saveEnrolment(enrolment.toModel())));
     }

@@ -6,6 +6,7 @@ import com.ftn.studentskasluzba.repository.CourseAdditionalPointsRepository;
 import com.ftn.studentskasluzba.service.CourseAdditionalPointsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -22,6 +23,7 @@ public class CourseAdditionalPointsController {
     CourseAdditionalPointsService courseAdditionalPointsService;
 
     @PutMapping
+    @PreAuthorize("hasAuthority('CourseAdditionalPointsCreateAndEdit')")
     public CourseAdditionalPointsDTO putCourseAdditionalPoints(@RequestBody CourseAdditionalPointsDTO courseAdditionalPoints) {
         var providedCourseAdditionalPoints = courseAdditionalPoints.toModel();
 

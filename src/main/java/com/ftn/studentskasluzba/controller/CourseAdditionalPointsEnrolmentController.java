@@ -5,6 +5,7 @@ import com.ftn.studentskasluzba.repository.CourseAdditionalPointsEnrolmentReposi
 import com.ftn.studentskasluzba.service.CourseAdditionalPointsEnrolmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +28,7 @@ public class CourseAdditionalPointsEnrolmentController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('CourseAdditionalPointsEnrolmentCreateAndEdit')")
     public CourseAdditionalPointsEnrolmentDTO putCourseAdditionalPointsEnrolment(@RequestBody CourseAdditionalPointsEnrolmentDTO courseAdditionalPointsEnrolment) {
         var providedEnrolment = courseAdditionalPointsEnrolment.toModel();
         return new CourseAdditionalPointsEnrolmentDTO(courseAdditionalPointsEnrolmentService.saveEnrolment(providedEnrolment));

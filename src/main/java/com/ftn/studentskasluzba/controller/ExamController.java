@@ -7,6 +7,7 @@ import com.ftn.studentskasluzba.repository.ExamRepository;
 import com.ftn.studentskasluzba.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class ExamController {
     ExamEnrolmentRepository examEnrolmentRepository;
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ExamCreateAndEdit')")
     public ExamDTO examPut(@RequestBody ExamDTO exam) {
         var providedExam = exam.toModel();
         return new ExamDTO(examService.saveExam(providedExam));

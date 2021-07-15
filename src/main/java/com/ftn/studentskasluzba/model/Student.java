@@ -1,6 +1,7 @@
 package com.ftn.studentskasluzba.model;
 
-import com.ftn.studentskasluzba.model.security.AllGranted;
+import com.ftn.studentskasluzba.model.security.CourseAdditionalPointsEnrolmentCreateAndEdit;
+import com.ftn.studentskasluzba.model.security.ExamEnrolmentCreateAndEdit;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -34,7 +35,10 @@ public class Student extends BaseAbstractClass implements ApplicationUser{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new AllGranted());
+        return Arrays.asList(
+                new CourseAdditionalPointsEnrolmentCreateAndEdit(),
+                new ExamEnrolmentCreateAndEdit()
+        );
     }
 
     @Override

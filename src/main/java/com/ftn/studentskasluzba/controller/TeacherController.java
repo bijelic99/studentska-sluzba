@@ -7,6 +7,7 @@ import com.ftn.studentskasluzba.repository.ExamRepository;
 import com.ftn.studentskasluzba.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -33,6 +34,7 @@ public class TeacherController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('TeacherCreate')")
     public ResponseEntity<TeacherDTO> addTeacher(@RequestBody TeacherDTO teacher) {
         try {
             return ResponseEntity.ok(new TeacherDTO(teacherService.addTeacher(teacher.toModel())));
@@ -43,6 +45,7 @@ public class TeacherController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('TeacherDelete')")
     public ResponseEntity<TeacherDTO> deleteTeacher(@PathVariable("id") Long id) {
         return teacherService.removeTeacher(id).map(TeacherDTO::new).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
