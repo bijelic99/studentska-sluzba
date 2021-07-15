@@ -8,8 +8,13 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Payment extends Transaction {
     public Payment(Long id, DateTime timestamp, Double amount, StudentsAccount account) {
         super(id, timestamp, amount, account);
+    }
+
+    public Payment(Long id, DateTime timestamp, Double amount) {
+        super(id, timestamp, amount);
     }
 }

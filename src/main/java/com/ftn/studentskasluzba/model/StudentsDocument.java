@@ -27,4 +27,11 @@ public class StudentsDocument extends BaseAbstractClass {
         this.documentType = documentType;
         this.student = student;
     }
+
+    public StudentsDocument(String title, String url, DocumentType documentType, Student student) {
+        this.title = title;
+        this.url = url;
+        this.documentType = documentType;
+        this.student = student;
+    }
 }

@@ -32,4 +32,9 @@ public class CourseEnrolment extends BaseAbstractClass {
         this.additionalPointsEnrolments = additionalPointsEnrolments;
         this.examEnrolments = examEnrolments;
     }
+
+    public CourseEnrolment(Student student, Course course) {
+        this.student = student;
+        this.course = course;
+    }
 }
