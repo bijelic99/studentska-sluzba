@@ -1,8 +1,8 @@
 INSERT INTO ADMIN(id, email, first_name, last_name, password, username) VALUES (1, 'a1@mail.com', 'Admin', 'One', '$2a$12$OTsU5brc2YlurIIWGJ5nq.9x8O.KDzExKLxiwwuzyEh9yfOaWs9Ey', 'aOne'); --password1
 
-INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (1, 'e1@mail.com', 'Employe', 'One', '$2y$12$Ejrxz18IUDZZ1IAWQhimC.mBoTkLl.OkdfcI8TWDoj9Dy2UDes2A2 ', 'eOne'); --password1
-INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (2, 'e2@mail.com', 'Employe', 'Two', '$2y$12$Pjgz3E4P43eoUGanEYYFOuY06d/3vUtqqrZ28Jxn0eNel7GsTe6Z2 ', 'eTwo'); --password2
-INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (3, 'e3@mail.com', 'Employe', 'Three', '$2y$12$dZ9azHLaXE3oLEkoLWmuFepccWfedqYJt9P3YQlBa6Y/sg5ImtsvC ', 'eThree'); --password3
+INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (1, 'e1@mail.com', 'Employe', 'One', '$2y$12$Ejrxz18IUDZZ1IAWQhimC.mBoTkLl.OkdfcI8TWDoj9Dy2UDes2A2', 'eOne'); --password1
+INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (2, 'e2@mail.com', 'Employe', 'Two', '$2y$12$Pjgz3E4P43eoUGanEYYFOuY06d/3vUtqqrZ28Jxn0eNel7GsTe6Z2', 'eTwo'); --password2
+INSERT INTO EMPLOYEE(id, email, first_name, last_name, password, username) VALUES (3, 'e3@mail.com', 'Employe', 'Three', '$2y$12$dZ9azHLaXE3oLEkoLWmuFepccWfedqYJt9P3YQlBa6Y/sg5ImtsvC', 'eThree'); --password3
 
 INSERT INTO TEACHING_ROLE(id, name) VALUES (1, 'Professor');
 INSERT INTO TEACHING_ROLE(id, name) VALUES (2, 'Assistant');
@@ -46,11 +46,11 @@ INSERT INTO course_additional_points(id, name, pass_required, course_id, course_
 INSERT INTO course_additional_points(id, name, pass_required, course_id, course_additional_points_type_id) VALUES(5, "Final project", true, 1, 1);
 
 
-INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(1, 'mail1@gmail.com', 'John1', 'Doe1', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq ', 'johndoe1'); --password123
-INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(2, 'mail2@gmail.com', 'John2', 'Doe2', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq ', 'johndoe2'); --password123
-INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(3, 'mail3@gmail.com', 'John3', 'Doe3', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq ', 'johndoe3'); --password123
-INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(4, 'mail4@gmail.com', 'John4', 'Doe4', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq ', 'johndoe4'); --password123
-INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(5, 'mail5@gmail.com', 'John5', 'Doe5', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq ', 'johndoe5'); --password123
+INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(1, 'mail1@gmail.com', 'John1', 'Doe1', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq', 'johndoe1'); --password123
+INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(2, 'mail2@gmail.com', 'John2', 'Doe2', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq', 'johndoe2'); --password123
+INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(3, 'mail3@gmail.com', 'John3', 'Doe3', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq', 'johndoe3'); --password123
+INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(4, 'mail4@gmail.com', 'John4', 'Doe4', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq', 'johndoe4'); --password123
+INSERT INTO STUDENT(id, email, first_name, last_name, password, username) VALUES(5, 'mail5@gmail.com', 'John5', 'Doe5', '$2y$12$axnGvlxM6nxl7hb/Saxhy.wZWqg6lgVafGknsXA7jvG7qhZS9zyGq', 'johndoe5'); --password123
 
 INSERT INTO STUDENTS_ACCOUNT(id, amount, student_id) VALUES(1, 250, 1);
 INSERT INTO STUDENTS_ACCOUNT(id, amount, student_id) VALUES(2, 500, 2);
