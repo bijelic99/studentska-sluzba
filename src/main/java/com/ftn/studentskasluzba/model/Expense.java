@@ -15,4 +15,8 @@ public class Expense extends Transaction {
     public Expense(Long id, DateTime timestamp, Double amount, StudentsAccount account) {
         super(id, timestamp, amount, account);
     }
+
+    public Expense(Long id, DateTime timestamp, Double amount) {
+        super(id, timestamp, amount);
+    }
 }

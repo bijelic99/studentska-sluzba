@@ -26,4 +26,10 @@ public abstract class Transaction extends BaseAbstractClass {
         this.amount = amount;
         this.account = account;
     }
+
+    public Transaction(Long id, DateTime timestamp, Double amount) {
+        super(id);
+        this.timestamp = timestamp;
+        this.amount = amount;
+    }
 }

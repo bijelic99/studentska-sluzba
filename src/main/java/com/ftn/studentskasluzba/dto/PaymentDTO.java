@@ -12,16 +12,13 @@ public record PaymentDTO(
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime timestamp,
         @JsonProperty("amount")
-        Double amount,
-        @JsonProperty("studentsAccount")
-        StudentsAccountDTO studentsAccount
+        Double amount
 ) implements ToModel<Payment> {
     public PaymentDTO(Payment payment) {
         this(
                 payment.getId(),
                 payment.getTimestamp(),
-                payment.getAmount(),
-                new StudentsAccountDTO(payment.getAccount())
+                payment.getAmount()
         );
     }
 
@@ -30,8 +27,7 @@ public record PaymentDTO(
         return new Payment(
                 id,
                 timestamp,
-                amount,
-                studentsAccount.toModel()
+                amount
         );
     }
 }
