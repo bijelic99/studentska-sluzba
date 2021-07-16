@@ -4,6 +4,7 @@ import com.ftn.studentskasluzba.dto.*;
 import com.ftn.studentskasluzba.repository.CourseRepository;
 import com.ftn.studentskasluzba.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,12 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
+
+    @GetMapping
+    public ResponseEntity getAllCourses() {
+        return new ResponseEntity(courseRepository.findAll().stream()
+                .map(CourseDTO::new).collect(Collectors.toSet()), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourse(@PathVariable("id") Long id) {
