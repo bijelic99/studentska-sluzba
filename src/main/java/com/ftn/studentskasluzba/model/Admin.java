@@ -30,7 +30,8 @@ public class Admin extends BaseAbstractClass implements ApplicationUser {
                 new ExamCreateAndEdit(),
                 new ExamEnrolmentCreateAndEdit(),
                 new TeacherCreate(),
-                new TeacherDelete()
+                new TeacherDelete(),
+                new ExamPeriodCreateAndEdit()
         );
     }
 

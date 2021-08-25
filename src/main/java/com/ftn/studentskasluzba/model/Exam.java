@@ -24,12 +24,16 @@ public class Exam extends BaseAbstractClass {
     private Course course;
     @OneToMany(mappedBy = "exam")
     private Set<ExamEnrolment> examEnrolments = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "exam_period_id")
+    private ExamPeriod examPeriod;
 
-    public Exam(Long id, DateTime examDateTime, Double examEnrolmentFee, Course course, Set<ExamEnrolment> examEnrolments) {
+    public Exam(Long id, DateTime examDateTime, Double examEnrolmentFee, Course course, Set<ExamEnrolment> examEnrolments, ExamPeriod examPeriod) {
         super(id);
         this.examDateTime = examDateTime;
         this.examEnrolmentFee = examEnrolmentFee;
         this.course = course;
         this.examEnrolments = examEnrolments;
+        this.examPeriod = examPeriod;
     }
 }

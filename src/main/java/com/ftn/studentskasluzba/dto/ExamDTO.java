@@ -16,14 +16,16 @@ public record ExamDTO(
         @JsonProperty("examEnrolmentFee")
         Double examEnrolmentFee,
         @JsonProperty("course")
-        CourseDTO course
+        CourseDTO course,
+        @JsonProperty("examPeriod")
+        ExamPeriodDTO examPeriod
 ) implements ToModel<Exam> {
-    public ExamDTO(Exam exam){
-        this(exam.getId(), exam.getExamDateTime(), exam.getExamEnrolmentFee(), new CourseDTO(exam.getCourse()));
+    public ExamDTO(Exam exam) {
+        this(exam.getId(), exam.getExamDateTime(), exam.getExamEnrolmentFee(), new CourseDTO(exam.getCourse()), new ExamPeriodDTO(exam.getExamPeriod()));
     }
 
     @Override
     public Exam toModel() {
-        return new Exam(id, examDateTime, examEnrolmentFee, course.toModel(), new HashSet<>());
+        return new Exam(id, examDateTime, examEnrolmentFee, course.toModel(), new HashSet<>(), examPeriod.toModel());
     }
 }
