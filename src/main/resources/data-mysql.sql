@@ -86,3 +86,12 @@ INSERT INTO EXAM_ENROLMENT(id, exam_id, course_enrolment_id, expense_id) VALUES(
 
 INSERT INTO course_additional_points_enrolment(id, passed, course_additional_points_id, course_enrolment_id) VALUE(1, 1, 5, 1);
 INSERT INTO course_additional_points_enrolment(id, passed, course_additional_points_id, course_enrolment_id) VALUE(2, 0, 5, 2);
+
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (1, 'High school Diploma');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (2, 'Scanned ID');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (3, 'Enrollment costs payment slip');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (4, 'Tuition fee payment slip');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (5, 'First year grade testimony');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (6, 'Second year grade testimony');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (7, 'Third year grade testimony');
+INSERT INTO DOCUMENT_TYPE(id, name) VALUE (8, 'Fourth year grade testimony');

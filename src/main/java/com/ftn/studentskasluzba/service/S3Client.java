@@ -2,6 +2,7 @@ package com.ftn.studentskasluzba.service;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -23,6 +24,9 @@ public class S3Client {
     @Value("${s3.secretKey}")
     private String secretKey;
 
+    @Value("${s3.endpoint}")
+    private String endpoint;
+
     @Value("${s3.bucket}")
     private String bucket;
 
@@ -30,7 +34,13 @@ public class S3Client {
         return AmazonS3ClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
-                .withRegion(Regions.EU_SOUTH_1)
+                .withEndpointConfiguration(
+                        new AwsClientBuilder.EndpointConfiguration(
+                                endpoint,
+                                Regions.EU_SOUTH_1.getName()
+                        )
+                )
+                .withPathStyleAccessEnabled(true)
                 .build();
     }
 
@@ -41,9 +51,12 @@ public class S3Client {
             client.createBucket(bucket);
     }
 
-    public String putFile(String path, InputStream inputStream) {
+    public String putFile(String path, InputStream inputStream, String contentType, Long contentLength) {
+        var metadata = new ObjectMetadata();
+        metadata.setContentType(contentType);
+        metadata.setContentLength(contentLength);
         client()
-                .putObject(bucket, path, inputStream, new ObjectMetadata());
+                .putObject(bucket, path, inputStream, metadata);
         return path;
     }
 

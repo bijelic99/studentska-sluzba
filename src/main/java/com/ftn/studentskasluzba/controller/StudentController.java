@@ -1,10 +1,7 @@
 package com.ftn.studentskasluzba.controller;
 
 import com.ftn.studentskasluzba.dto.*;
-import com.ftn.studentskasluzba.model.CourseEnrolment;
-import com.ftn.studentskasluzba.model.Expense;
-import com.ftn.studentskasluzba.model.Payment;
-import com.ftn.studentskasluzba.model.Student;
+import com.ftn.studentskasluzba.model.*;
 import com.ftn.studentskasluzba.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +44,7 @@ public class StudentController {
     @GetMapping("/{id}/documents")
     public ResponseEntity getStudentDocuments(@PathVariable("id") Long id) {
         return new ResponseEntity<>(studentService.getStudentDocuments(id).stream()
-                .map(StudentDocumentDTO::new) ,HttpStatus.OK);
+                .map(StudentsDocumentDTO::new) ,HttpStatus.OK);
     }
 
     @GetMapping("/{id}/exams")

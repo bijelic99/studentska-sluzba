@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 public class StudentsDocument extends BaseAbstractClass {
-    private String title;
     private String url;
     @ManyToOne
     @JoinColumn(name = "document_type_id")
@@ -20,16 +19,14 @@ public class StudentsDocument extends BaseAbstractClass {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public StudentsDocument(Long id, String title, String url, DocumentType documentType, Student student) {
+    public StudentsDocument(Long id, String url, DocumentType documentType, Student student) {
         super(id);
-        this.title = title;
         this.url = url;
         this.documentType = documentType;
         this.student = student;
     }
 
-    public StudentsDocument(String title, String url, DocumentType documentType, Student student) {
-        this.title = title;
+    public StudentsDocument(String url, DocumentType documentType, Student student) {
         this.url = url;
         this.documentType = documentType;
         this.student = student;
