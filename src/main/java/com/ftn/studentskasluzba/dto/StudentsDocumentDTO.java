@@ -17,7 +17,6 @@ public record StudentsDocumentDTO(
         this(studentsDocument.getId(), new StudentDTO(studentsDocument.getStudent()), studentsDocument.getUrl(), new DocumentTypeDTO(studentsDocument.getDocumentType()));
     }
 
-
     @Override
     public StudentsDocument toModel() {
         return new StudentsDocument(id, url, documentType.toModel(), student.toModel());

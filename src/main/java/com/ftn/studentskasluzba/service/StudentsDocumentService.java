@@ -1,6 +1,10 @@
 package com.ftn.studentskasluzba.service;
 
+import com.ftn.studentskasluzba.model.DocumentType;
+import com.ftn.studentskasluzba.model.Student;
 import com.ftn.studentskasluzba.model.StudentsDocument;
+import com.ftn.studentskasluzba.repository.DocumentTypeRepository;
+import com.ftn.studentskasluzba.repository.StudentRepository;
 import com.ftn.studentskasluzba.repository.StudentsDocumentRepository;
 import org.apache.tika.mime.MimeTypeException;
 import org.apache.tika.mime.MimeTypes;
@@ -14,17 +18,32 @@ import java.util.UUID;
 public class StudentsDocumentService {
 
     @Autowired
-    StudentsDocumentRepository studentsDocumentRepository;
+    private StudentsDocumentRepository studentsDocumentRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private DocumentTypeRepository documentTypeRepository;
 
     @Autowired
     S3Client s3Client;
 
-    public StudentsDocument saveStudentsDocument(StudentsDocument studentsDocument, MultipartFile file) throws Exception {
+    public StudentsDocument saveStudentsDocument(Long id, StudentsDocument studentsDocument, MultipartFile file, Long documentTypeId) throws Exception {
+
         var documentExtension = resolveExtension(file.getContentType());
-        var possibleDocumentPath = constructStudentsDocumentPath(studentsDocument.getStudent().getId(), documentExtension);
+        var possibleDocumentPath = constructStudentsDocumentPath(id, documentExtension);
+        Student student = studentRepository.getOne(id);
+
         if (studentsDocument.getId() == null) {
             var finalDocumentPath = s3Client.putFile(possibleDocumentPath, file.getInputStream(), file.getContentType(), file.getSize());
+
+            DocumentType documentType = documentTypeRepository.getOne(documentTypeId);
+
+            studentsDocument.setDocumentType(documentType);
+            studentsDocument.setStudent(student);
             studentsDocument.setUrl(finalDocumentPath);
+
             return studentsDocumentRepository.save(studentsDocument);
         } else {
             var existingDoc = studentsDocumentRepository.findById(studentsDocument.getId()).orElseThrow();

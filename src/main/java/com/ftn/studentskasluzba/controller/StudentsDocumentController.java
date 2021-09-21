@@ -6,6 +6,7 @@ import com.ftn.studentskasluzba.model.StudentsDocument;
 import com.ftn.studentskasluzba.repository.StudentsDocumentRepository;
 import com.ftn.studentskasluzba.service.StudentsDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,16 +31,12 @@ public class StudentsDocumentController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<StudentsDocumentDTO> put(@RequestParam("studentsDocument") String jsonStudentsDocument, @RequestParam("file")  MultipartFile file) {
+    @PutMapping(value = "/{id}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<StudentsDocumentDTO> put(@RequestParam("file")  MultipartFile file, @RequestParam("documentTypeId") Long documentTypeId, @PathVariable("id") Long id) {
         try {
-            var om = new ObjectMapper();
-            var studentsDocument = om.readValue(jsonStudentsDocument, StudentsDocumentDTO.class);
-            StudentsDocument document = studentsDocumentService.saveStudentsDocument(studentsDocument.toModel(), file);
-            return ResponseEntity.ok(new StudentsDocumentDTO(document));
+            return new ResponseEntity<>(new StudentsDocumentDTO(studentsDocumentService.saveStudentsDocument(id, new StudentsDocument(), file, documentTypeId)), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

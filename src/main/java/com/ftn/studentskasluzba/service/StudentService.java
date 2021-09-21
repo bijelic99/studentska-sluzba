@@ -2,11 +2,13 @@ package com.ftn.studentskasluzba.service;
 
 import com.ftn.studentskasluzba.model.*;
 import com.ftn.studentskasluzba.repository.*;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,9 @@ public class StudentService {
 
     @Autowired
     private ExamEnrolmentRepository examEnrolmentRepository;
+
+    @Autowired
+    private ExamRepository examRepository;
 
     @Autowired
     private CourseEnrolmentRepository courseEnrolmentRepository;
@@ -62,6 +67,39 @@ public class StudentService {
         Student student = studentRepository.getOne(id);
         return examEnrolmentRepository.findAll().stream().filter(examEnrolment -> examEnrolment.getCourseEnrolment()
                 .getStudent().equals(student)).map(ExamEnrolment::getExam).collect(Collectors.toSet());
+    }
+
+    public ExamEnrolment examEnroll(Long id, Long examId) {
+        Exam exam = examRepository.getOne(examId);
+        Student student = studentRepository.getOne(id);
+        Optional<CourseEnrolment> possibleCourseEnrolment = student.getCourseEnrolments().stream()
+                .filter(ce -> ce.getCourse().equals(exam.getCourse())).findFirst();
+
+        if(possibleCourseEnrolment.isPresent() && student.getStudentsAccount().getAmount() > exam.getExamEnrolmentFee()) {
+            for (ExamEnrolment examEnrolment : possibleCourseEnrolment.get().getExamEnrolments()) {
+                if(examEnrolment.getExam().equals(exam))
+                    return null;
+            }
+
+            Expense newExpense = new Expense();
+            newExpense.setAccount(student.getStudentsAccount());
+            newExpense.setAmount(exam.getExamEnrolmentFee());
+            student.getStudentsAccount().setAmount(student.getStudentsAccount().getAmount() - exam.getExamEnrolmentFee());
+            newExpense.setTimestamp(DateTime.now());
+
+            ExamEnrolment newExamEnrolment = new ExamEnrolment();
+            newExamEnrolment.setExam(exam);
+            newExamEnrolment.setCourseEnrolment(possibleCourseEnrolment.get());
+            newExamEnrolment.setExpense(newExpense);
+
+            expenseRepository.save(newExpense);
+            examEnrolmentRepository.save(newExamEnrolment);
+            accountRepository.save(student.getStudentsAccount());
+
+            return newExamEnrolment;
+        }
+
+        return null;
     }
 
     public Set<Payment> getStudentPayments(Long id) {

@@ -1,13 +1,19 @@
 package com.ftn.studentskasluzba.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ftn.studentskasluzba.dto.*;
 import com.ftn.studentskasluzba.model.*;
+import com.ftn.studentskasluzba.repository.StudentsDocumentRepository;
 import com.ftn.studentskasluzba.service.StudentService;
+import com.ftn.studentskasluzba.service.StudentsDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -16,6 +22,12 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private StudentsDocumentRepository studentsDocumentRepository;
+
+    @Autowired
+    private StudentsDocumentService studentsDocumentService;
 
     @GetMapping( value = "/{id}")
     public ResponseEntity getStudent(@PathVariable("id") Long id) {
@@ -42,15 +54,25 @@ public class StudentController {
     }
 
     @GetMapping("/{id}/documents")
-    public ResponseEntity getStudentDocuments(@PathVariable("id") Long id) {
+    public ResponseEntity<Set<StudentsDocumentDTO>> get(@PathVariable("id") Long id) {
         return new ResponseEntity<>(studentService.getStudentDocuments(id).stream()
-                .map(StudentsDocumentDTO::new) ,HttpStatus.OK);
+                .map(StudentsDocumentDTO::new).collect(Collectors.toSet()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/exams")
     public ResponseEntity getExams(@PathVariable("id") Long id) {
         return new ResponseEntity<>(studentService.getExams(id).stream()
                 .map(ExamDTO::new).collect(Collectors.toSet()) ,HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/exams/{examId}")
+    public ResponseEntity getExams(@PathVariable("id") Long id, @PathVariable("examId") Long examId) {
+        ExamEnrolment examEnrolment = studentService.examEnroll(id, examId);
+        if(examEnrolment != null) {
+            return new ResponseEntity<>(new ExamEnrolmentDTO(examEnrolment), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/{id}/colloquiums")

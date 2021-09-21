@@ -11,12 +11,14 @@ INSERT INTO TEACHING_ROLE(id, name) VALUES (3, 'Demonstrator');
 INSERT INTO SUBJECT(id, ects, title) VALUES (1, 6, 'E learning');
 INSERT INTO SUBJECT(id, ects, title) VALUES (2, 8, 'Mathematics I');
 INSERT INTO SUBJECT(id, ects, title) VALUES (3, 8, 'Mathematics II');
+INSERT INTO SUBJECT(id, ects, title) VALUES (4, 8, 'Web');
+INSERT INTO SUBJECT(id, ects, title) VALUES (5, 8, 'Programing basics');
 
 INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(1, '2021-01-01 00:00:00', '2021-10-01 00:00:00', 1);
-INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(2, '2020-07-01 00:00:00', '2021-01-01 00:00:00', 1);
-INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(3, '2020-07-01 00:00:00', '2021-01-01 00:00:00', 2);
-INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(4, '2021-01-01 00:00:00', '2021-10-01 00:00:00', 3);
-INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(5, '2021-01-01 00:00:00', '2021-10-01 00:00:00', 3);
+INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(2, '2020-07-01 00:00:00', '2021-01-01 00:00:00', 2);
+INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(3, '2020-07-01 00:00:00', '2021-01-01 00:00:00', 3);
+INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(4, '2021-01-01 00:00:00', '2021-10-01 00:00:00', 4);
+INSERT INTO COURSE(id, start_date, end_date, subject_id) VALUES(5, '2021-01-01 00:00:00', '2021-10-01 00:00:00', 5);
 
 INSERT INTO TEACHER(id, course_id, employee_id, teaching_role_id) VALUES (1, 1, 1, 1);
 INSERT INTO TEACHER(id, course_id, employee_id, teaching_role_id) VALUES (2, 1, 2, 2);
@@ -29,11 +31,13 @@ INSERT INTO TEACHER(id, course_id, employee_id, teaching_role_id) VALUES (8, 5, 
 INSERT INTO TEACHER(id, course_id, employee_id, teaching_role_id) VALUES (9, 5, 3, 1);
 INSERT INTO TEACHER(id, course_id, employee_id, teaching_role_id) VALUES (10, 5, 1, 3);
 
-INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id) VALUES(1, '2021-06-29 00:00:00', 200.00, 1);
-INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id) VALUES(2, '2021-06-29 00:00:00', 200.00, 2);
-INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id) VALUES(3, '2021-06-29 00:00:00', 200.00, 3);
-INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id) VALUES(4, '2021-06-29 00:00:00', 200.00, 4);
-INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id) VALUES(5, '2021-06-29 00:00:00', 200.00, 5);
+INSERT INTO EXAM_PERIOD(id, end_time, name, start_time) VALUES(1, '2021-09-30 00:00:00', 'September', '2021-09-01 08:00:00');
+
+INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id, exam_period_id) VALUES(1, '2021-06-29 00:00:00', 200.00, 1, 1);
+INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id, exam_period_id) VALUES(2, '2021-06-29 00:00:00', 200.00, 2, 1);
+INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id, exam_period_id) VALUES(3, '2021-06-29 00:00:00', 200.00, 3, 1);
+INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id, exam_period_id) VALUES(4, '2021-06-29 00:00:00', 200.00, 4, 1);
+INSERT INTO EXAM(id, exam_date_time, exam_enrolment_fee, course_id, exam_period_id) VALUES(5, '2021-06-29 00:00:00', 200.00, 5, 1);
 
 INSERT INTO course_additional_points_type(id, name) VALUES(1, 'Project');
 INSERT INTO course_additional_points_type(id, name) VALUES(2, 'Colloquium');
