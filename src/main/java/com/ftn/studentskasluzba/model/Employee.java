@@ -36,7 +36,8 @@ public class Employee extends BaseAbstractClass implements ApplicationUser {
                 new CourseAdditionalPointsEnrolmentCreateAndEdit(),
                 new CourseCreateAndEdit(),
                 new ExamCreateAndEdit(),
-                new ExamEnrolmentCreateAndEdit()
+                new ExamEnrolmentCreateAndEdit(),
+                new TeacherCreate()
         );
     }
 
