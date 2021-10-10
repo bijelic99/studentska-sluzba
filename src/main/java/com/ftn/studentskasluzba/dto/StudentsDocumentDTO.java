@@ -14,7 +14,7 @@ public record StudentsDocumentDTO(
         DocumentTypeDTO documentType,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<StudentsDocument> {
+) implements ToAndFromModel<StudentsDocument, StudentsDocumentDTO> {
     public StudentsDocumentDTO(StudentsDocument studentsDocument) {
         this(studentsDocument.getId(), new StudentDTO(studentsDocument.getStudent()), studentsDocument.getUrl(), new DocumentTypeDTO(studentsDocument.getDocumentType()), studentsDocument.getDeleted());
     }
@@ -22,5 +22,10 @@ public record StudentsDocumentDTO(
     @Override
     public StudentsDocument toModel() {
         return new StudentsDocument(id, url, documentType.toModel(), student.toModel(), deleted);
+    }
+
+    @Override
+    public StudentsDocumentDTO fromModel(StudentsDocument modelObject) {
+        return new StudentsDocumentDTO(modelObject);
     }
 }

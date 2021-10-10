@@ -15,7 +15,7 @@ public record ExpenseDTO(
         Double amount,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Expense> {
+) implements ToAndFromModel<Expense, ExpenseDTO> {
     public ExpenseDTO(Expense expense) {
         this(
                 expense.getId(),
@@ -33,5 +33,10 @@ public record ExpenseDTO(
                 amount,
                 deleted
         );
+    }
+
+    @Override
+    public ExpenseDTO fromModel(Expense modelObject) {
+        return new ExpenseDTO(modelObject);
     }
 }

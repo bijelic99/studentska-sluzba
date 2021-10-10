@@ -20,7 +20,7 @@ public record CourseDTO(
         SubjectDTO subject,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Course> {
+) implements ToAndFromModel<Course, CourseDTO> {
     public CourseDTO(Course course) {
         this(course.getId(), course.getEndDate(), course.getStartDate(), new SubjectDTO(course.getSubject()), course.getDeleted());
     }
@@ -28,5 +28,10 @@ public record CourseDTO(
     @Override
     public Course toModel() {
         return new Course(id, endDate, startDate, subject.toModel(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), deleted);
+    }
+
+    @Override
+    public CourseDTO fromModel(Course modelObject) {
+        return new CourseDTO(modelObject);
     }
 }

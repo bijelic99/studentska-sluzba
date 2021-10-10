@@ -14,7 +14,7 @@ public record SubjectDTO(
         Integer ECTS,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Subject> {
+) implements ToAndFromModel<Subject, SubjectDTO> {
     public SubjectDTO(Subject subject) {
         this(subject.getId(), subject.getTitle(), subject.getECTS(), subject.getDeleted());
     }
@@ -22,5 +22,10 @@ public record SubjectDTO(
     @Override
     public Subject toModel() {
         return new Subject(id, title, ECTS, new HashSet<>(), deleted);
+    }
+
+    @Override
+    public SubjectDTO fromModel(Subject modelObject) {
+        return new SubjectDTO(modelObject);
     }
 }

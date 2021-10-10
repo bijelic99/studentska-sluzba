@@ -20,7 +20,7 @@ public record AdminDTO(
         Role role,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Admin>, UserWithRole {
+) implements ToAndFromModel<Admin, AdminDTO>, UserWithRole {
     public AdminDTO(Admin admin) {
         this(
                 admin.getId(),
@@ -36,5 +36,10 @@ public record AdminDTO(
     @Override
     public Admin toModel() {
         return new Admin(id, new UserGeneralData(email, username, null, firstName, lastName), deleted);
+    }
+
+    @Override
+    public AdminDTO fromModel(Admin modelObject) {
+        return new AdminDTO(modelObject);
     }
 }

@@ -21,7 +21,7 @@ public record ExamDTO(
         ExamPeriodDTO examPeriod,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Exam> {
+) implements ToAndFromModel<Exam, ExamDTO> {
     public ExamDTO(Exam exam) {
         this(exam.getId(), exam.getExamDateTime(), exam.getExamEnrolmentFee(), new CourseDTO(exam.getCourse()), new ExamPeriodDTO(exam.getExamPeriod()), exam.getDeleted());
     }
@@ -29,5 +29,11 @@ public record ExamDTO(
     @Override
     public Exam toModel() {
         return new Exam(id, examDateTime, examEnrolmentFee, course.toModel(), new HashSet<>(), examPeriod.toModel(), deleted);
+    }
+
+
+    @Override
+    public ExamDTO fromModel(Exam modelObject) {
+        return new ExamDTO(modelObject);
     }
 }

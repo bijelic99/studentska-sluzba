@@ -15,7 +15,7 @@ public record PaymentDTO(
         Double amount,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Payment> {
+) implements ToAndFromModel<Payment, PaymentDTO> {
     public PaymentDTO(Payment payment) {
         this(
                 payment.getId(),
@@ -33,5 +33,10 @@ public record PaymentDTO(
                 amount,
                 deleted
         );
+    }
+
+    @Override
+    public PaymentDTO fromModel(Payment modelObject) {
+        return new PaymentDTO(modelObject);
     }
 }

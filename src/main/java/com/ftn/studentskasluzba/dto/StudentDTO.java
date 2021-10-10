@@ -24,7 +24,7 @@ public record StudentDTO(
         Role role,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Student>, UserWithRole {
+) implements ToAndFromModel<Student, StudentDTO>, UserWithRole {
     public StudentDTO(Student student) {
         this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()), Role.STUDENT, student.getDeleted());
     }
@@ -32,5 +32,10 @@ public record StudentDTO(
     @Override
     public Student toModel() {
         return new Student(id, new UserGeneralData(email, username, null, firstName, lastName), studentsAccount.toModel(), new HashSet<>(), new HashSet<>(), deleted);
+    }
+
+    @Override
+    public StudentDTO fromModel(Student modelObject) {
+        return new StudentDTO(modelObject);
     }
 }

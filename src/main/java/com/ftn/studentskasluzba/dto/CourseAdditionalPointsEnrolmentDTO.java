@@ -16,7 +16,7 @@ public record CourseAdditionalPointsEnrolmentDTO(
         Boolean passed,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<CourseAdditionalPointsEnrolment> {
+) implements ToAndFromModel<CourseAdditionalPointsEnrolment, CourseAdditionalPointsEnrolmentDTO> {
     public CourseAdditionalPointsEnrolmentDTO(
             CourseAdditionalPointsEnrolment courseAdditionalPointsEnrolment
     ) {
@@ -40,5 +40,10 @@ public record CourseAdditionalPointsEnrolmentDTO(
                 passed,
                 deleted
         );
+    }
+
+    @Override
+    public CourseAdditionalPointsEnrolmentDTO fromModel(CourseAdditionalPointsEnrolment modelObject) {
+        return new CourseAdditionalPointsEnrolmentDTO(modelObject);
     }
 }

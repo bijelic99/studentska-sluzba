@@ -15,7 +15,7 @@ public record StudentsAccountDTO(
         Double amount,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<StudentsAccount> {
+) implements ToAndFromModel<StudentsAccount, StudentsAccountDTO> {
 
     public StudentsAccountDTO(StudentsAccount studentsAccount) {
         this(studentsAccount.getId(), studentsAccount.getStudent().getId(), studentsAccount.getAmount(), studentsAccount.getDeleted());
@@ -26,5 +26,10 @@ public record StudentsAccountDTO(
         var st = new Student();
         st.setId(studentId);
         return new StudentsAccount(id, amount, st, new HashSet<>(), new HashSet<>(), deleted);
+    }
+
+    @Override
+    public StudentsAccountDTO fromModel(StudentsAccount modelObject) {
+        return new StudentsAccountDTO(modelObject);
     }
 }

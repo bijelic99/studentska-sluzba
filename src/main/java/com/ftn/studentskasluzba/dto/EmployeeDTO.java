@@ -22,7 +22,7 @@ public record EmployeeDTO(
         Role role,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<Employee>, UserWithRole {
+) implements ToAndFromModel<Employee, EmployeeDTO>, UserWithRole {
     public EmployeeDTO(Employee employee) {
         this(
                 employee.getId(),
@@ -38,5 +38,10 @@ public record EmployeeDTO(
     @Override
     public Employee toModel() {
         return new Employee(id, new UserGeneralData(email, username, null, firstName, lastName), new HashSet<>(), deleted);
+    }
+
+    @Override
+    public EmployeeDTO fromModel(Employee modelObject) {
+        return new EmployeeDTO(modelObject);
     }
 }

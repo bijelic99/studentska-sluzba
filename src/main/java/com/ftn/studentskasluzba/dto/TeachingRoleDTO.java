@@ -12,7 +12,7 @@ public record TeachingRoleDTO(
         String name,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<TeachingRole> {
+) implements ToAndFromModel<TeachingRole, TeachingRoleDTO> {
 
     public TeachingRoleDTO(TeachingRole teachingRole) {
         this(teachingRole.getId(), teachingRole.getName(), teachingRole.getDeleted());
@@ -21,5 +21,10 @@ public record TeachingRoleDTO(
     @Override
     public TeachingRole toModel() {
         return new TeachingRole(id, name, new HashSet<>(), deleted);
+    }
+
+    @Override
+    public TeachingRoleDTO fromModel(TeachingRole modelObject) {
+        return new TeachingRoleDTO(modelObject);
     }
 }

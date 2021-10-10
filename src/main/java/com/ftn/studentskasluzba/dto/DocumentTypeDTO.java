@@ -12,7 +12,7 @@ public record DocumentTypeDTO(
         String name,
         @JsonProperty("deleted")
         Boolean deleted
-) implements ToModel<DocumentType> {
+) implements ToAndFromModel<DocumentType, DocumentTypeDTO> {
     public DocumentTypeDTO(DocumentType documentType) {
         this(documentType.getId(), documentType.getName(), documentType.getDeleted());
     }
@@ -21,5 +21,11 @@ public record DocumentTypeDTO(
     @Override
     public DocumentType toModel() {
         return new DocumentType(id, name, new HashSet<>(), deleted);
+    }
+
+
+    @Override
+    public DocumentTypeDTO fromModel(DocumentType modelObject) {
+        return new DocumentTypeDTO(modelObject);
     }
 }
