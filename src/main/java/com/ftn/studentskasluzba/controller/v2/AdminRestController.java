@@ -4,26 +4,26 @@ import com.ftn.studentskasluzba.controller.RestControllerAbstractClass;
 import com.ftn.studentskasluzba.dto.AdminDTO;
 import com.ftn.studentskasluzba.dto.PagingWrapper;
 import com.ftn.studentskasluzba.model.Admin;
-import com.ftn.studentskasluzba.service.rest.AdminService;
+import com.ftn.studentskasluzba.service.rest.AdminRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("api/v2/admin")
-public class AdminController extends RestControllerAbstractClass<Admin, AdminDTO> {
+public class AdminRestController extends RestControllerAbstractClass<Admin, AdminDTO> {
 
-    public AdminController() {
+    public AdminRestController() {
 
     }
 
     @Autowired
-    public AdminController(AdminService service) {
+    public AdminRestController(AdminRestService service) {
         super(
-                Set.of("id", "email", "username", "firstName", "lastName"),
+                Map.of("id", "id", "email", "userGeneralData.email", "username", "userGeneralData.username", "firstName", "userGeneralData.firstName", "lastName", "userGeneralData.lastName"),
                 new AdminDTO(
                         null,
                         null,

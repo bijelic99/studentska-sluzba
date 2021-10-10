@@ -6,9 +6,7 @@ import com.ftn.studentskasluzba.model.BaseAbstractClass;
 import com.ftn.studentskasluzba.service.rest.RestServiceAbstractClass;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class RestControllerAbstractClass<BaseEntity extends BaseAbstractClass, Entity extends ToAndFromModel<BaseEntity, Entity>> {
@@ -17,14 +15,14 @@ public abstract class RestControllerAbstractClass<BaseEntity extends BaseAbstrac
 
     }
 
-    public RestControllerAbstractClass(Set<String> sortableFields, Entity dtoFactoryObject, RestServiceAbstractClass<BaseEntity> service) {
-        this.sortableFields = sortableFields;
+    public RestControllerAbstractClass(Map<String, String> sortableFieldsKeyValuePairs, Entity dtoFactoryObject, RestServiceAbstractClass<BaseEntity> service) {
+        this.sortableFieldsKeyValuePairs = sortableFieldsKeyValuePairs;
         this.dtoFactoryObject = dtoFactoryObject;
         this.service = service;
     }
 
     protected Integer defaultPageSize = 50;
-    protected Set<String> sortableFields;
+    protected Map<String, String> sortableFieldsKeyValuePairs;
     /**
      * Has to be done this way because of language limitations of Java
      */
@@ -38,13 +36,14 @@ public abstract class RestControllerAbstractClass<BaseEntity extends BaseAbstrac
     }
 
     public ResponseEntity<PagingWrapper<Entity>> getAll(Boolean includeDeleted, Optional<Integer> page, Optional<Integer> pageSize, Optional<String> sortBy, Optional<String> sortOrder) {
-        if (sortBy.isPresent() && !sortableFields.contains(sortBy.get())) return ResponseEntity.badRequest().build();
+        if (sortBy.isPresent() && !sortableFieldsKeyValuePairs.containsKey(sortBy.get()))
+            return ResponseEntity.badRequest().build();
         if (sortOrder.isPresent() && !Arrays.asList("asc", "desc").contains(sortOrder.get()))
             return ResponseEntity.badRequest().build();
-        var result = service.getAll(includeDeleted, page, pageSize.orElse(defaultPageSize), sortBy, sortOrder);
+        var result = service.getAll(includeDeleted, page, pageSize.orElse(defaultPageSize), sortBy.map(s -> sortableFieldsKeyValuePairs.get(s)), sortOrder);
         return ResponseEntity.ok(
                 new PagingWrapper<Entity>(
-                        result.elements().stream().map(dtoFactoryObject::fromModel).collect(Collectors.toSet()),
+                        result.elements().stream().map(dtoFactoryObject::fromModel).collect(Collectors.toList()),
                         result.totalPages(),
                         result.totalResults()
                 )

@@ -2,11 +2,11 @@ package com.ftn.studentskasluzba.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Set;
+import java.util.List;
 
 public record PagingWrapper<Entity>(
         @JsonProperty("elements")
-        Set<Entity> elements,
+        List<Entity> elements,
         @JsonProperty("totalPages")
         Integer totalPages,
         @JsonProperty("totalResults")

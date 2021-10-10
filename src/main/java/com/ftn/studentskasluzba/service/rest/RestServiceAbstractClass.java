@@ -51,7 +51,7 @@ public abstract class RestServiceAbstractClass<Entity extends BaseAbstractClass>
         }
 
         return new PagingWrapper<>(
-                result.toSet(),
+                result.toList(),
                 result.getTotalPages(),
                 result.getTotalElements()
         );
