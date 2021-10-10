@@ -4,9 +4,10 @@ import com.ftn.studentskasluzba.controller.RestControllerAbstractClass;
 import com.ftn.studentskasluzba.dto.AdminDTO;
 import com.ftn.studentskasluzba.dto.PagingWrapper;
 import com.ftn.studentskasluzba.model.Admin;
+import com.ftn.studentskasluzba.service.rest.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.Set;
@@ -16,6 +17,11 @@ import java.util.Set;
 public class AdminController extends RestControllerAbstractClass<Admin, AdminDTO> {
 
     public AdminController() {
+
+    }
+
+    @Autowired
+    public AdminController(AdminService service) {
         super(
                 Set.of("id", "email", "username", "firstName", "lastName"),
                 new AdminDTO(
@@ -26,32 +32,38 @@ public class AdminController extends RestControllerAbstractClass<Admin, AdminDTO
                         null,
                         null,
                         null
-                )
+                ),
+                service
         );
     }
 
+    @GetMapping("/{id}")
     @Override
-    public ResponseEntity<AdminDTO> get(Long id) {
+    public ResponseEntity<AdminDTO> get(@PathVariable("id") Long id) {
         return super.get(id);
     }
 
+    @GetMapping
     @Override
-    public ResponseEntity<PagingWrapper<AdminDTO>> getAll(Boolean includeDeleted, Optional<Integer> page, Optional<Integer> pageSize, Optional<String> sortBy, Optional<String> sortOrder) {
+    public ResponseEntity<PagingWrapper<AdminDTO>> getAll(@RequestParam(name = "includeDeleted", defaultValue = "false") Boolean includeDeleted, @RequestParam Optional<Integer> page, @RequestParam Optional<Integer> pageSize, @RequestParam Optional<String> sortBy, @RequestParam Optional<String> sortOrder) {
         return super.getAll(includeDeleted, page, pageSize, sortBy, sortOrder);
     }
 
+    @PostMapping
     @Override
-    public ResponseEntity<AdminDTO> post(AdminDTO adminDTO) {
+    public ResponseEntity<AdminDTO> post(@RequestBody AdminDTO adminDTO) {
         return super.post(adminDTO);
     }
 
+    @PutMapping
     @Override
-    public ResponseEntity<AdminDTO> put(AdminDTO adminDTO) {
+    public ResponseEntity<AdminDTO> put(@RequestBody AdminDTO adminDTO) {
         return super.put(adminDTO);
     }
 
+    @DeleteMapping("/{id}")
     @Override
-    public ResponseEntity<Boolean> delete(Long id) {
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
         return super.delete(id);
     }
 }

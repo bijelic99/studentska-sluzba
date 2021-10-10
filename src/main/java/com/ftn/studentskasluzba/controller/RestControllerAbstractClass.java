@@ -3,7 +3,7 @@ package com.ftn.studentskasluzba.controller;
 import com.ftn.studentskasluzba.dto.PagingWrapper;
 import com.ftn.studentskasluzba.dto.ToAndFromModel;
 import com.ftn.studentskasluzba.model.BaseAbstractClass;
-import com.ftn.studentskasluzba.service.RestServiceAbstractClass;
+import com.ftn.studentskasluzba.service.rest.RestServiceAbstractClass;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
@@ -13,13 +13,14 @@ import java.util.stream.Collectors;
 
 public abstract class RestControllerAbstractClass<BaseEntity extends BaseAbstractClass, Entity extends ToAndFromModel<BaseEntity, Entity>> {
 
-    public RestControllerAbstractClass() {
+    protected RestControllerAbstractClass() {
 
     }
 
-    public RestControllerAbstractClass(Set<String> sortableFields, Entity dtoFactoryObject) {
+    public RestControllerAbstractClass(Set<String> sortableFields, Entity dtoFactoryObject, RestServiceAbstractClass<BaseEntity> service) {
         this.sortableFields = sortableFields;
         this.dtoFactoryObject = dtoFactoryObject;
+        this.service = service;
     }
 
     protected Integer defaultPageSize = 50;
@@ -61,7 +62,6 @@ public abstract class RestControllerAbstractClass<BaseEntity extends BaseAbstrac
     }
 
     public ResponseEntity<Boolean> delete(Long id) {
-        service.delete(id);
-        return ResponseEntity.ok(true);
+        return service.delete(id) ? ResponseEntity.ok(true) : ResponseEntity.notFound().build();
     }
 }
