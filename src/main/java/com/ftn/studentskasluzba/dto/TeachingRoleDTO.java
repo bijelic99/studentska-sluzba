@@ -9,15 +9,17 @@ public record TeachingRoleDTO(
         @JsonProperty("id")
         Long id,
         @JsonProperty("name")
-        String name
+        String name,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<TeachingRole> {
 
     public TeachingRoleDTO(TeachingRole teachingRole) {
-        this(teachingRole.getId(), teachingRole.getName());
+        this(teachingRole.getId(), teachingRole.getName(), teachingRole.getDeleted());
     }
 
     @Override
     public TeachingRole toModel() {
-        return new TeachingRole(id, name, new HashSet<>());
+        return new TeachingRole(id, name, new HashSet<>(), deleted);
     }
 }

@@ -25,8 +25,8 @@ public class CourseEnrolment extends BaseAbstractClass {
     @OneToMany(mappedBy = "courseEnrolment")
     private Set<ExamEnrolment> examEnrolments = new HashSet<>();
 
-    public CourseEnrolment(Long id, Student student, Course course, Set<CourseAdditionalPointsEnrolment> additionalPointsEnrolments, Set<ExamEnrolment> examEnrolments) {
-        super(id);
+    public CourseEnrolment(Long id, Student student, Course course, Set<CourseAdditionalPointsEnrolment> additionalPointsEnrolments, Set<ExamEnrolment> examEnrolments, Boolean deleted) {
+        super(id, deleted);
         this.student = student;
         this.course = course;
         this.additionalPointsEnrolments = additionalPointsEnrolments;

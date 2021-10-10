@@ -13,7 +13,9 @@ public record CourseAdditionalPointsEnrolmentDTO(
         @JsonProperty("points")
         Integer points,
         @JsonProperty("passed")
-        Boolean passed
+        Boolean passed,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<CourseAdditionalPointsEnrolment> {
     public CourseAdditionalPointsEnrolmentDTO(
             CourseAdditionalPointsEnrolment courseAdditionalPointsEnrolment
@@ -23,7 +25,8 @@ public record CourseAdditionalPointsEnrolmentDTO(
                 new CourseAdditionalPointsDTO(courseAdditionalPointsEnrolment.getCourseAdditionalPoints()),
                 new CourseEnrolmentDTO(courseAdditionalPointsEnrolment.getCourseEnrolment()),
                 courseAdditionalPointsEnrolment.getPoints(),
-                courseAdditionalPointsEnrolment.getPassed()
+                courseAdditionalPointsEnrolment.getPassed(),
+                courseAdditionalPointsEnrolment.getDeleted()
         );
     }
 
@@ -34,7 +37,8 @@ public record CourseAdditionalPointsEnrolmentDTO(
                 courseAdditionalPoints.toModel(),
                 courseEnrolment.toModel(),
                 points,
-                passed
+                passed,
+                deleted
         );
     }
 }

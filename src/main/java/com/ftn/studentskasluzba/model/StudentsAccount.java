@@ -20,8 +20,8 @@ public class StudentsAccount extends BaseAbstractClass {
     @OneToMany(mappedBy = "account")
     private Set<Expense> expenses = new HashSet<>();
 
-    public StudentsAccount(Long id, Double amount, Student student, Set<Payment> payments, Set<Expense> expenses) {
-        super(id);
+    public StudentsAccount(Long id, Double amount, Student student, Set<Payment> payments, Set<Expense> expenses, Boolean deleted) {
+        super(id, deleted);
         this.amount = amount;
         this.student = student;
         this.payments = payments;

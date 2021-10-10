@@ -1,6 +1,5 @@
 package com.ftn.studentskasluzba.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ftn.studentskasluzba.dto.*;
 import com.ftn.studentskasluzba.model.*;
 import com.ftn.studentskasluzba.repository.StudentsDocumentRepository;
@@ -8,10 +7,8 @@ import com.ftn.studentskasluzba.service.StudentService;
 import com.ftn.studentskasluzba.service.StudentsDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 import java.util.stream.Collectors;

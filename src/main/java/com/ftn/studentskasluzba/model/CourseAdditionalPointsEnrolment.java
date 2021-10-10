@@ -20,8 +20,8 @@ public class CourseAdditionalPointsEnrolment extends BaseAbstractClass {
     private Integer points;
     private Boolean passed;
 
-    public CourseAdditionalPointsEnrolment(Long id, CourseAdditionalPoints courseAdditionalPoints, CourseEnrolment courseEnrolment, Integer points, Boolean passed) {
-        super(id);
+    public CourseAdditionalPointsEnrolment(Long id, CourseAdditionalPoints courseAdditionalPoints, CourseEnrolment courseEnrolment, Integer points, Boolean passed, Boolean deleted) {
+        super(id, deleted);
         this.courseAdditionalPoints = courseAdditionalPoints;
         this.courseEnrolment = courseEnrolment;
         this.points = points;

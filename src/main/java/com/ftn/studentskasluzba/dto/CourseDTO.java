@@ -17,13 +17,16 @@ public record CourseDTO(
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime startDate,
         @JsonProperty("subject")
-        SubjectDTO subject) implements ToModel<Course> {
+        SubjectDTO subject,
+        @JsonProperty("deleted")
+        Boolean deleted
+) implements ToModel<Course> {
     public CourseDTO(Course course) {
-        this(course.getId(), course.getEndDate(), course.getStartDate(), new SubjectDTO(course.getSubject()));
+        this(course.getId(), course.getEndDate(), course.getStartDate(), new SubjectDTO(course.getSubject()), course.getDeleted());
     }
 
     @Override
     public Course toModel() {
-        return new Course(id, endDate, startDate, subject.toModel(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>());
+        return new Course(id, endDate, startDate, subject.toModel(), new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), deleted);
     }
 }

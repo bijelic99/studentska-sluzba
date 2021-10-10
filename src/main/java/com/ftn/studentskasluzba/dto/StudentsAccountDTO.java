@@ -12,17 +12,19 @@ public record StudentsAccountDTO(
         @JsonProperty("studentId")
         Long studentId,
         @JsonProperty("amount")
-        Double amount
+        Double amount,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<StudentsAccount> {
 
     public StudentsAccountDTO(StudentsAccount studentsAccount) {
-        this(studentsAccount.getId(), studentsAccount.getStudent().getId(), studentsAccount.getAmount());
+        this(studentsAccount.getId(), studentsAccount.getStudent().getId(), studentsAccount.getAmount(), studentsAccount.getDeleted());
     }
 
     @Override
     public StudentsAccount toModel() {
         var st = new Student();
         st.setId(studentId);
-        return new StudentsAccount(id, amount, st, new HashSet<>(), new HashSet<>());
+        return new StudentsAccount(id, amount, st, new HashSet<>(), new HashSet<>(), deleted);
     }
 }

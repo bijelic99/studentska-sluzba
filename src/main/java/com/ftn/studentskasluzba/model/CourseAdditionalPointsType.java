@@ -18,8 +18,8 @@ public class CourseAdditionalPointsType extends BaseAbstractClass {
     @OneToMany(mappedBy = "courseAdditionalPointsType")
     private Set<CourseAdditionalPoints> courseAdditionalPointsSet = new HashSet<>();
 
-    public CourseAdditionalPointsType(Long id, String name, Set<CourseAdditionalPoints> courseAdditionalPointsSet) {
-        super(id);
+    public CourseAdditionalPointsType(Long id, String name, Set<CourseAdditionalPoints> courseAdditionalPointsSet, Boolean deleted) {
+        super(id, deleted);
         this.name = name;
         this.courseAdditionalPointsSet = courseAdditionalPointsSet;
     }

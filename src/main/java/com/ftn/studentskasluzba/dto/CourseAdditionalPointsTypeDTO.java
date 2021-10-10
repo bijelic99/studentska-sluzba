@@ -9,15 +9,17 @@ public record CourseAdditionalPointsTypeDTO(
         @JsonProperty("id")
         Long id,
         @JsonProperty("name")
-        String name
+        String name,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<CourseAdditionalPointsType> {
 
     public CourseAdditionalPointsTypeDTO(CourseAdditionalPointsType courseAdditionalPointsType) {
-        this(courseAdditionalPointsType.getId(), courseAdditionalPointsType.getName());
+        this(courseAdditionalPointsType.getId(), courseAdditionalPointsType.getName(), courseAdditionalPointsType.getDeleted());
     }
 
     @Override
     public CourseAdditionalPointsType toModel() {
-        return new CourseAdditionalPointsType(id, name, new HashSet<>());
+        return new CourseAdditionalPointsType(id, name, new HashSet<>(), deleted);
     }
 }

@@ -17,8 +17,8 @@ public class Subject extends BaseAbstractClass {
     @OneToMany(mappedBy = "subject")
     private Set<Course> courses = new HashSet<>();
 
-    public Subject(Long id, String title, Integer ECTS, Set<Course> courses) {
-        super(id);
+    public Subject(Long id, String title, Integer ECTS, Set<Course> courses, Boolean deleted) {
+        super(id, deleted);
         this.title = title;
         this.ECTS = ECTS;
         this.courses = courses;

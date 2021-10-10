@@ -53,7 +53,8 @@ public class RegistrationService {
                                         passwordEncoder.encode(newUser.password()),
                                         newUser.firstName(),
                                         newUser.lastName()
-                                )
+                                ),
+                                false
                         );
                         user = adminRepository.save(user);
                         createdUser = new AdminDTO(user);
@@ -71,14 +72,16 @@ public class RegistrationService {
                                 ),
                                 null,
                                 new HashSet<>(),
-                                new HashSet<>()
+                                new HashSet<>(),
+                                false
                         );
                         var studentsAccount = new StudentsAccount(
                                 null,
                                 0d,
                                 null,
                                 new HashSet<>(),
-                                new HashSet<>()
+                                new HashSet<>(),
+                                false
                         );
                         studentsAccount = studentsAccountRepository.save(studentsAccount);
                         user.setStudentsAccount(studentsAccount);
@@ -99,7 +102,8 @@ public class RegistrationService {
                                         newUser.firstName(),
                                         newUser.lastName()
                                 ),
-                                new HashSet<>()
+                                new HashSet<>(),
+                                false
                         );
                         user = employeeRepository.save(user);
                         createdUser = new EmployeeDTO(user);

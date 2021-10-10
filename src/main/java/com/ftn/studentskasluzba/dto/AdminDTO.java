@@ -17,7 +17,9 @@ public record AdminDTO(
         @JsonProperty("lastName")
         String lastName,
         @JsonProperty("role")
-        Role role
+        Role role,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Admin>, UserWithRole {
     public AdminDTO(Admin admin) {
         this(
@@ -26,12 +28,13 @@ public record AdminDTO(
                 admin.getUserGeneralData().getUsername(),
                 admin.getUserGeneralData().getFirstName(),
                 admin.getUserGeneralData().getLastName(),
-                Role.ADMIN
+                Role.ADMIN,
+                admin.getDeleted()
         );
     }
 
     @Override
     public Admin toModel() {
-        return new Admin(id, new UserGeneralData(email, username, null, firstName, lastName));
+        return new Admin(id, new UserGeneralData(email, username, null, firstName, lastName), deleted);
     }
 }

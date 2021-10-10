@@ -21,8 +21,8 @@ public class Teacher extends BaseAbstractClass {
     @JoinColumn(name = "teaching_role_id")
     private TeachingRole teachingRole;
 
-    public Teacher(Long id, Course course, Employee employee, TeachingRole teachingRole) {
-        super(id);
+    public Teacher(Long id, Course course, Employee employee, TeachingRole teachingRole, Boolean deleted) {
+        super(id, deleted);
         this.course = course;
         this.employee = employee;
         this.teachingRole = teachingRole;

@@ -28,8 +28,8 @@ public class CourseAdditionalPoints extends BaseAbstractClass {
     @OneToMany(mappedBy = "courseAdditionalPoints")
     private Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments = new HashSet<>();
 
-    public CourseAdditionalPoints(Long id, String name, Boolean passRequired, DateTime startDatetime, DateTime endDatetime, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments) {
-        super(id);
+    public CourseAdditionalPoints(Long id, String name, Boolean passRequired, DateTime startDatetime, DateTime endDatetime, Course course, CourseAdditionalPointsType courseAdditionalPointsType, Set<CourseAdditionalPointsEnrolment> courseAdditionalPointsEnrolments, Boolean deleted) {
+        super(id, deleted);
         this.name = name;
         this.passRequired = passRequired;
         this.startDatetime = startDatetime;

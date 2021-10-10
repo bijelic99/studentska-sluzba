@@ -16,8 +16,8 @@ public class Admin extends BaseAbstractClass implements ApplicationUser {
     @Embedded
     private UserGeneralData userGeneralData;
 
-    public Admin(Long id, UserGeneralData userGeneralData) {
-        super(id);
+    public Admin(Long id, UserGeneralData userGeneralData, Boolean deleted) {
+        super(id, deleted);
         this.userGeneralData = userGeneralData;
     }
 

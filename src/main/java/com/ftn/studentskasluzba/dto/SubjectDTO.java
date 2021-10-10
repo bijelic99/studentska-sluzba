@@ -11,14 +11,16 @@ public record SubjectDTO(
         @JsonProperty("title")
         String title,
         @JsonProperty("ECTS")
-        Integer ECTS
+        Integer ECTS,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Subject> {
     public SubjectDTO(Subject subject) {
-        this(subject.getId(), subject.getTitle(), subject.getECTS());
+        this(subject.getId(), subject.getTitle(), subject.getECTS(), subject.getDeleted());
     }
 
     @Override
     public Subject toModel() {
-        return new Subject(id, title, ECTS, new HashSet<>());
+        return new Subject(id, title, ECTS, new HashSet<>(), deleted);
     }
 }

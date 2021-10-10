@@ -23,8 +23,8 @@ public class Employee extends BaseAbstractClass implements ApplicationUser {
     @OneToMany(mappedBy = "employee")
     private Set<Teacher> teacherPositions = new HashSet<>();
 
-    public Employee(Long id, UserGeneralData userGeneralData, Set<Teacher> teacherPositions) {
-        super(id);
+    public Employee(Long id, UserGeneralData userGeneralData, Set<Teacher> teacherPositions, Boolean deleted) {
+        super(id, deleted);
         this.userGeneralData = userGeneralData;
         this.teacherPositions = teacherPositions;
     }

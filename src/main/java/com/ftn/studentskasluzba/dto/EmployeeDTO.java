@@ -19,7 +19,9 @@ public record EmployeeDTO(
         @JsonProperty("lastName")
         String lastName,
         @JsonProperty("role")
-        Role role
+        Role role,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Employee>, UserWithRole {
     public EmployeeDTO(Employee employee) {
         this(
@@ -28,12 +30,13 @@ public record EmployeeDTO(
                 employee.getUserGeneralData().getUsername(),
                 employee.getUserGeneralData().getFirstName(),
                 employee.getUserGeneralData().getLastName(),
-                Role.EMPLOYEE
+                Role.EMPLOYEE,
+                employee.getDeleted()
         );
     }
 
     @Override
     public Employee toModel() {
-        return new Employee(id, new UserGeneralData(email, username, null, firstName, lastName), new HashSet<>());
+        return new Employee(id, new UserGeneralData(email, username, null, firstName, lastName), new HashSet<>(), deleted);
     }
 }

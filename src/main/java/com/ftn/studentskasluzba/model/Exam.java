@@ -28,8 +28,8 @@ public class Exam extends BaseAbstractClass {
     @JoinColumn(name = "exam_period_id")
     private ExamPeriod examPeriod;
 
-    public Exam(Long id, DateTime examDateTime, Double examEnrolmentFee, Course course, Set<ExamEnrolment> examEnrolments, ExamPeriod examPeriod) {
-        super(id);
+    public Exam(Long id, DateTime examDateTime, Double examEnrolmentFee, Course course, Set<ExamEnrolment> examEnrolments, ExamPeriod examPeriod, Boolean deleted) {
+        super(id, deleted);
         this.examDateTime = examDateTime;
         this.examEnrolmentFee = examEnrolmentFee;
         this.course = course;

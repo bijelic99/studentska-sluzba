@@ -23,8 +23,8 @@ public class ExamPeriod extends BaseAbstractClass {
     @OneToMany(mappedBy = "examPeriod")
     private Set<Exam> exams;
 
-    public ExamPeriod(Long id, String name, DateTime startTime, DateTime endTime, Set<Exam> exams) {
-        super(id);
+    public ExamPeriod(Long id, String name, DateTime startTime, DateTime endTime, Set<Exam> exams, Boolean deleted) {
+        super(id, deleted);
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;

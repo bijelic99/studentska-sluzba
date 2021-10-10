@@ -16,8 +16,8 @@ public class TeachingRole extends BaseAbstractClass {
     @OneToMany(mappedBy = "teachingRole")
     private Set<Teacher> teachers = new HashSet<>();
 
-    public TeachingRole(Long id, String name, Set<Teacher> teachers) {
-        super(id);
+    public TeachingRole(Long id, String name, Set<Teacher> teachers, Boolean deleted) {
+        super(id, deleted);
         this.name = name;
         this.teachers = teachers;
     }

@@ -9,15 +9,17 @@ public record DocumentTypeDTO(
         @JsonProperty("id")
         Long id,
         @JsonProperty("name")
-        String name
+        String name,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<DocumentType> {
     public DocumentTypeDTO(DocumentType documentType) {
-        this(documentType.getId(), documentType.getName());
+        this(documentType.getId(), documentType.getName(), documentType.getDeleted());
     }
 
 
     @Override
     public DocumentType toModel() {
-        return new DocumentType(id, name, new HashSet<>());
+        return new DocumentType(id, name, new HashSet<>(), deleted);
     }
 }

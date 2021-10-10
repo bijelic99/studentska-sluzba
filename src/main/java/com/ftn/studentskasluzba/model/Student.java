@@ -25,8 +25,8 @@ public class Student extends BaseAbstractClass implements ApplicationUser{
     @OneToMany(mappedBy = "student")
     private Set<CourseEnrolment> courseEnrolments = new HashSet<>();
 
-    public Student(Long id, UserGeneralData userGeneralData, StudentsAccount studentsAccount, Set<StudentsDocument> studentsDocuments, Set<CourseEnrolment> courseEnrolments) {
-        super(id);
+    public Student(Long id, UserGeneralData userGeneralData, StudentsAccount studentsAccount, Set<StudentsDocument> studentsDocuments, Set<CourseEnrolment> courseEnrolments, Boolean deleted) {
+        super(id, deleted);
         this.userGeneralData = userGeneralData;
         this.studentsAccount = studentsAccount;
         this.studentsDocuments = studentsDocuments;

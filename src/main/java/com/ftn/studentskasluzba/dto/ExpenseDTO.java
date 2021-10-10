@@ -12,13 +12,16 @@ public record ExpenseDTO(
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime timestamp,
         @JsonProperty("amount")
-        Double amount
+        Double amount,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Expense> {
     public ExpenseDTO(Expense expense) {
         this(
                 expense.getId(),
                 expense.getTimestamp(),
-                expense.getAmount()
+                expense.getAmount(),
+                expense.getDeleted()
         );
     }
 
@@ -27,7 +30,8 @@ public record ExpenseDTO(
         return new Expense(
                 id,
                 timestamp,
-                amount
+                amount,
+                deleted
         );
     }
 }

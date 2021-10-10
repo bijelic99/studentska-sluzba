@@ -18,15 +18,17 @@ public record ExamPeriodDTO(
         DateTime startTime,
         @JsonProperty("endTime")
         @JsonFormat(shape = JsonFormat.Shape.STRING)
-        DateTime endTime
+        DateTime endTime,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<ExamPeriod> {
 
     public ExamPeriodDTO(ExamPeriod examPeriod) {
-        this(examPeriod.getId(), examPeriod.getName(), examPeriod.getStartTime(), examPeriod.getEndTime());
+        this(examPeriod.getId(), examPeriod.getName(), examPeriod.getStartTime(), examPeriod.getEndTime(), examPeriod.getDeleted());
     }
 
     @Override
     public ExamPeriod toModel() {
-        return new ExamPeriod(id, name, startTime, endTime, new HashSet<Exam>());
+        return new ExamPeriod(id, name, startTime, endTime, new HashSet<Exam>(), deleted);
     }
 }

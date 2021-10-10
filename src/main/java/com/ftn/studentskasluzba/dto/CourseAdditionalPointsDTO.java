@@ -23,10 +23,12 @@ public record CourseAdditionalPointsDTO(
         @JsonProperty("course")
         CourseDTO course,
         @JsonProperty("courseAdditionalPointsType")
-        CourseAdditionalPointsTypeDTO courseAdditionalPointsType
+        CourseAdditionalPointsTypeDTO courseAdditionalPointsType,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<CourseAdditionalPoints> {
     public CourseAdditionalPointsDTO(CourseAdditionalPoints courseAdditionalPoints) {
-        this(courseAdditionalPoints.getId(), courseAdditionalPoints.getName(), courseAdditionalPoints.getPassRequired(), courseAdditionalPoints.getStartDatetime(), courseAdditionalPoints.getEndDatetime(), new CourseDTO(courseAdditionalPoints.getCourse()), new CourseAdditionalPointsTypeDTO(courseAdditionalPoints.getCourseAdditionalPointsType()));
+        this(courseAdditionalPoints.getId(), courseAdditionalPoints.getName(), courseAdditionalPoints.getPassRequired(), courseAdditionalPoints.getStartDatetime(), courseAdditionalPoints.getEndDatetime(), new CourseDTO(courseAdditionalPoints.getCourse()), new CourseAdditionalPointsTypeDTO(courseAdditionalPoints.getCourseAdditionalPointsType()), courseAdditionalPoints.getDeleted());
     }
 
     @Override
@@ -39,7 +41,8 @@ public record CourseAdditionalPointsDTO(
                 endDatetime,
                 course.toModel(),
                 courseAdditionalPointsType.toModel(),
-                new HashSet<>()
+                new HashSet<>(),
+                deleted
         );
     }
 }

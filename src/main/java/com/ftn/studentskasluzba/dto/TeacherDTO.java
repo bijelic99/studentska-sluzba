@@ -11,15 +11,17 @@ public record TeacherDTO(
         @JsonProperty("employee")
         EmployeeDTO employee,
         @JsonProperty("teachingRole")
-        TeachingRoleDTO teachingRole
+        TeachingRoleDTO teachingRole,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Teacher> {
 
     public TeacherDTO(Teacher teacher){
-        this(teacher.getId(), new CourseDTO(teacher.getCourse()), new EmployeeDTO(teacher.getEmployee()), new TeachingRoleDTO(teacher.getTeachingRole()));
+        this(teacher.getId(), new CourseDTO(teacher.getCourse()), new EmployeeDTO(teacher.getEmployee()), new TeachingRoleDTO(teacher.getTeachingRole()), teacher.getDeleted());
     }
 
     @Override
     public Teacher toModel() {
-        return new Teacher(id, course.toModel(), employee.toModel(), teachingRole.toModel());
+        return new Teacher(id, course.toModel(), employee.toModel(), teachingRole.toModel(), deleted);
     }
 }

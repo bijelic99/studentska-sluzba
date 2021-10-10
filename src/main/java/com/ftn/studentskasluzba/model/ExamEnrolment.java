@@ -26,8 +26,8 @@ public class ExamEnrolment extends BaseAbstractClass {
     @JoinColumn(name = "expense_id")
     private Expense expense;
 
-    public ExamEnrolment(Long id, Integer grade, Integer points, Exam exam, CourseEnrolment courseEnrolment, Expense expense) {
-        super(id);
+    public ExamEnrolment(Long id, Integer grade, Integer points, Exam exam, CourseEnrolment courseEnrolment, Expense expense, Boolean deleted) {
+        super(id, deleted);
         this.grade = grade;
         this.points = points;
         this.exam = exam;

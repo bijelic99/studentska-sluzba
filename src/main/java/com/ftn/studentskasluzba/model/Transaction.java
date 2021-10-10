@@ -20,15 +20,15 @@ public abstract class Transaction extends BaseAbstractClass {
     @JoinColumn(name = "account_id")
     protected StudentsAccount account;
 
-    public Transaction(Long id, DateTime timestamp, Double amount, StudentsAccount account) {
-        super(id);
+    public Transaction(Long id, DateTime timestamp, Double amount, StudentsAccount account, Boolean deleted) {
+        super(id, deleted);
         this.timestamp = timestamp;
         this.amount = amount;
         this.account = account;
     }
 
-    public Transaction(Long id, DateTime timestamp, Double amount) {
-        super(id);
+    public Transaction(Long id, DateTime timestamp, Double amount, Boolean deleted) {
+        super(id, deleted);
         this.timestamp = timestamp;
         this.amount = amount;
     }

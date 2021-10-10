@@ -21,14 +21,16 @@ public record StudentDTO(
         @JsonProperty("studentsAccount")
         StudentsAccountDTO studentsAccount,
         @JsonProperty("role")
-        Role role
+        Role role,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Student>, UserWithRole {
     public StudentDTO(Student student) {
-        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()), Role.STUDENT);
+        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()), Role.STUDENT, student.getDeleted());
     }
 
     @Override
     public Student toModel() {
-        return new Student(id, new UserGeneralData(email, username, null, firstName, lastName), studentsAccount.toModel(), new HashSet<>(), new HashSet<>());
+        return new Student(id, new UserGeneralData(email, username, null, firstName, lastName), studentsAccount.toModel(), new HashSet<>(), new HashSet<>(), deleted);
     }
 }

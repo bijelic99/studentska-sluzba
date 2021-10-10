@@ -18,14 +18,16 @@ public record ExamDTO(
         @JsonProperty("course")
         CourseDTO course,
         @JsonProperty("examPeriod")
-        ExamPeriodDTO examPeriod
+        ExamPeriodDTO examPeriod,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<Exam> {
     public ExamDTO(Exam exam) {
-        this(exam.getId(), exam.getExamDateTime(), exam.getExamEnrolmentFee(), new CourseDTO(exam.getCourse()), new ExamPeriodDTO(exam.getExamPeriod()));
+        this(exam.getId(), exam.getExamDateTime(), exam.getExamEnrolmentFee(), new CourseDTO(exam.getCourse()), new ExamPeriodDTO(exam.getExamPeriod()), exam.getDeleted());
     }
 
     @Override
     public Exam toModel() {
-        return new Exam(id, examDateTime, examEnrolmentFee, course.toModel(), new HashSet<>(), examPeriod.toModel());
+        return new Exam(id, examDateTime, examEnrolmentFee, course.toModel(), new HashSet<>(), examPeriod.toModel(), deleted);
     }
 }

@@ -19,8 +19,8 @@ public class StudentsDocument extends BaseAbstractClass {
     @JoinColumn(name = "student_id")
     private Student student;
 
-    public StudentsDocument(Long id, String url, DocumentType documentType, Student student) {
-        super(id);
+    public StudentsDocument(Long id, String url, DocumentType documentType, Student student, Boolean deleted) {
+        super(id, deleted);
         this.url = url;
         this.documentType = documentType;
         this.student = student;

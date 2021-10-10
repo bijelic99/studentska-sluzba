@@ -11,14 +11,16 @@ public record StudentsDocumentDTO(
         @JsonProperty("url")
         String url,
         @JsonProperty("documentType")
-        DocumentTypeDTO documentType
+        DocumentTypeDTO documentType,
+        @JsonProperty("deleted")
+        Boolean deleted
 ) implements ToModel<StudentsDocument> {
     public StudentsDocumentDTO(StudentsDocument studentsDocument) {
-        this(studentsDocument.getId(), new StudentDTO(studentsDocument.getStudent()), studentsDocument.getUrl(), new DocumentTypeDTO(studentsDocument.getDocumentType()));
+        this(studentsDocument.getId(), new StudentDTO(studentsDocument.getStudent()), studentsDocument.getUrl(), new DocumentTypeDTO(studentsDocument.getDocumentType()), studentsDocument.getDeleted());
     }
 
     @Override
     public StudentsDocument toModel() {
-        return new StudentsDocument(id, url, documentType.toModel(), student.toModel());
+        return new StudentsDocument(id, url, documentType.toModel(), student.toModel(), deleted);
     }
 }

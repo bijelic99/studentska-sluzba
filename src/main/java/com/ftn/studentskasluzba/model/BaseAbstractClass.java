@@ -14,4 +14,7 @@ public abstract class BaseAbstractClass {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     protected Long id;
+
+    @Column(name = "deleted", nullable = false)
+    protected Boolean deleted = false;
 }

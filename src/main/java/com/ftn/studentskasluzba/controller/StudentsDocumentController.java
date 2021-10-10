@@ -1,6 +1,5 @@
 package com.ftn.studentskasluzba.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ftn.studentskasluzba.dto.StudentsDocumentDTO;
 import com.ftn.studentskasluzba.model.StudentsDocument;
 import com.ftn.studentskasluzba.repository.StudentsDocumentRepository;
