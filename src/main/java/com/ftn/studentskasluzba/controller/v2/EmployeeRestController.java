@@ -1,10 +1,10 @@
 package com.ftn.studentskasluzba.controller.v2;
 
 import com.ftn.studentskasluzba.controller.RestControllerAbstractClass;
-import com.ftn.studentskasluzba.dto.AdminDTO;
+import com.ftn.studentskasluzba.dto.EmployeeDTO;
 import com.ftn.studentskasluzba.dto.PagingWrapper;
-import com.ftn.studentskasluzba.model.Admin;
-import com.ftn.studentskasluzba.service.rest.AdminRestService;
+import com.ftn.studentskasluzba.model.Employee;
+import com.ftn.studentskasluzba.service.rest.EmployeeRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +13,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v2/admin")
-public class AdminRestController extends RestControllerAbstractClass<Admin, AdminDTO> {
+@RequestMapping("api/v2/employee")
+public class EmployeeRestController extends RestControllerAbstractClass<Employee, EmployeeDTO> {
 
-    public AdminRestController() {
+    public EmployeeRestController() {
 
     }
 
     @Autowired
-    public AdminRestController(AdminRestService service) {
+    public EmployeeRestController(EmployeeRestService service) {
         super(
                 Map.of(
                         "id",
@@ -35,7 +35,7 @@ public class AdminRestController extends RestControllerAbstractClass<Admin, Admi
                         "lastName",
                         "userGeneralData.lastName"
                 ),
-                new AdminDTO(
+                new EmployeeDTO(
                         null,
                         null,
                         null,
@@ -50,26 +50,26 @@ public class AdminRestController extends RestControllerAbstractClass<Admin, Admi
 
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<AdminDTO> get(@PathVariable("id") Long id) {
+    public ResponseEntity<EmployeeDTO> get(@PathVariable("id") Long id) {
         return super.get(id);
     }
 
     @GetMapping
     @Override
-    public ResponseEntity<PagingWrapper<AdminDTO>> getAll(@RequestParam(name = "includeDeleted", defaultValue = "false") Boolean includeDeleted, @RequestParam Optional<Integer> page, @RequestParam Optional<Integer> pageSize, @RequestParam Optional<String> sortBy, @RequestParam Optional<String> sortOrder) {
+    public ResponseEntity<PagingWrapper<EmployeeDTO>> getAll(@RequestParam(name = "includeDeleted", defaultValue = "false") Boolean includeDeleted, @RequestParam Optional<Integer> page, @RequestParam Optional<Integer> pageSize, @RequestParam Optional<String> sortBy, @RequestParam Optional<String> sortOrder) {
         return super.getAll(includeDeleted, page, pageSize, sortBy, sortOrder);
     }
 
     @PostMapping
     @Override
-    public ResponseEntity<AdminDTO> post(@RequestBody AdminDTO adminDTO) {
-        return super.post(adminDTO);
+    public ResponseEntity<EmployeeDTO> post(@RequestBody EmployeeDTO employeeDTO) {
+        return super.post(employeeDTO);
     }
 
     @PutMapping
     @Override
-    public ResponseEntity<AdminDTO> put(@RequestBody AdminDTO adminDTO) {
-        return super.put(adminDTO);
+    public ResponseEntity<EmployeeDTO> put(@RequestBody EmployeeDTO employeeDTO) {
+        return super.put(employeeDTO);
     }
 
     @DeleteMapping("/{id}")
