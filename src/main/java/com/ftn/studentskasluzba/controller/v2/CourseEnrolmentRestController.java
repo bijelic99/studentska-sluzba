@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v2/courseEnrolment")
+@RequestMapping("api/v2/course-enrolment")
 public class CourseEnrolmentRestController extends RestControllerAbstractClass<CourseEnrolment, CourseEnrolmentDTO> {
 
     public CourseEnrolmentRestController() {

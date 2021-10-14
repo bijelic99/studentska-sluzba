@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v2/documentType")
+@RequestMapping("api/v2/document-type")
 public class DocumentTypeRestController extends RestControllerAbstractClass<DocumentType, DocumentTypeDTO> {
 
     public DocumentTypeRestController() {

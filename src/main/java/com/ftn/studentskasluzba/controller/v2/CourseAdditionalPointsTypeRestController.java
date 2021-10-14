@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v2/courseAdditionalPointsType")
+@RequestMapping("api/v2/course-additional-points-type")
 public class CourseAdditionalPointsTypeRestController extends RestControllerAbstractClass<CourseAdditionalPointsType, CourseAdditionalPointsTypeDTO> {
 
     public CourseAdditionalPointsTypeRestController() {
