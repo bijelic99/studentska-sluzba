@@ -33,7 +33,7 @@ public class CourseRestController extends RestControllerAbstractClass<Course, Co
 
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<CourseDTO> get(Long id) {
+    public ResponseEntity<CourseDTO> get(@PathVariable("id") Long id) {
         return super.get(id);
     }
 
