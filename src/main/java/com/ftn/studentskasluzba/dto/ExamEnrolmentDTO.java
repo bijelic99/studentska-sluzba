@@ -26,7 +26,7 @@ public record ExamEnrolmentDTO(
 
     @Override
     public ExamEnrolment toModel() {
-        return new ExamEnrolment(id, grade, points, exam.toModel(), courseEnrolment.toModel(), expense.toModel(), deleted);
+        return new ExamEnrolment(id, grade, points, exam.toModel(), courseEnrolment.toModel(), expense == null ? null : expense.toModel(), deleted);
     }
 
     @Override
