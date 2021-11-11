@@ -19,14 +19,14 @@ public record StudentDTO(
         @JsonProperty("lastName")
         String lastName,
         @JsonProperty("studentsAccount")
-        StudentsAccountDTO studentsAccount,
+        StudentsAccountWithoutStudentDTO studentsAccount,
         @JsonProperty("role")
         Role role,
         @JsonProperty("deleted")
         Boolean deleted
 ) implements ToAndFromModel<Student, StudentDTO>, UserWithRole {
     public StudentDTO(Student student) {
-        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountDTO(student.getStudentsAccount()), Role.STUDENT, student.getDeleted());
+        this(student.getId(), student.getUserGeneralData().getEmail(), student.getUserGeneralData().getUsername(), student.getUserGeneralData().getFirstName(), student.getUserGeneralData().getLastName(), new StudentsAccountWithoutStudentDTO(student.getStudentsAccount()), Role.STUDENT, student.getDeleted());
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.util.HashSet;
 public record StudentsAccountDTO(
         @JsonProperty("id")
         Long id,
-        @JsonProperty("studentId")
-        Long studentId,
+        @JsonProperty("student")
+        StudentWithoutAccountDTO student,
         @JsonProperty("amount")
         Double amount,
         @JsonProperty("deleted")
@@ -18,14 +18,12 @@ public record StudentsAccountDTO(
 ) implements ToAndFromModel<StudentsAccount, StudentsAccountDTO> {
 
     public StudentsAccountDTO(StudentsAccount studentsAccount) {
-        this(studentsAccount.getId(), studentsAccount.getStudent().getId(), studentsAccount.getAmount(), studentsAccount.getDeleted());
+        this(studentsAccount.getId(), new StudentWithoutAccountDTO(studentsAccount.getStudent()), studentsAccount.getAmount(), studentsAccount.getDeleted());
     }
 
     @Override
     public StudentsAccount toModel() {
-        var st = new Student();
-        st.setId(studentId);
-        return new StudentsAccount(id, amount, st, new HashSet<>(), new HashSet<>(), deleted);
+        return new StudentsAccount(id, amount, student.toModel(), new HashSet<>(), new HashSet<>(), deleted);
     }
 
     @Override
