@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 public record ExpenseDTO(
         @JsonProperty("id")
         Long id,
+        @JsonProperty("studentsAccount")
+        StudentsAccountDTO studentsAccount,
         @JsonProperty("timestamp")
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime timestamp,
@@ -19,6 +21,7 @@ public record ExpenseDTO(
     public ExpenseDTO(Expense expense) {
         this(
                 expense.getId(),
+                new StudentsAccountDTO(expense.getAccount()),
                 expense.getTimestamp(),
                 expense.getAmount(),
                 expense.getDeleted()
@@ -31,6 +34,7 @@ public record ExpenseDTO(
                 id,
                 timestamp,
                 amount,
+                studentsAccount.toModel(),
                 deleted
         );
     }

@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 public record PaymentDTO(
         @JsonProperty("id")
         Long id,
+        @JsonProperty("studentsAccount")
+        StudentsAccountDTO studentsAccount,
         @JsonProperty("timestamp")
         @JsonFormat(shape = JsonFormat.Shape.STRING)
         DateTime timestamp,
@@ -19,6 +21,7 @@ public record PaymentDTO(
     public PaymentDTO(Payment payment) {
         this(
                 payment.getId(),
+                new StudentsAccountDTO(payment.getAccount()),
                 payment.getTimestamp(),
                 payment.getAmount(),
                 payment.getDeleted()
@@ -31,6 +34,7 @@ public record PaymentDTO(
                 id,
                 timestamp,
                 amount,
+                studentsAccount.toModel(),
                 deleted
         );
     }
