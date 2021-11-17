@@ -5,9 +5,12 @@ import com.ftn.studentskasluzba.dto.PagingWrapper;
 import com.ftn.studentskasluzba.dto.StudentsDocumentDTO;
 import com.ftn.studentskasluzba.model.StudentsDocument;
 import com.ftn.studentskasluzba.service.rest.StudentsDocumentRestService;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 import java.util.Optional;
@@ -15,6 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v2/students-document")
 public class StudentsDocumentRestController extends RestControllerAbstractClass<StudentsDocument, StudentsDocumentDTO> {
+
+    StudentsDocumentRestService studentsService;
 
     public StudentsDocumentRestController() {
 
@@ -42,6 +47,7 @@ public class StudentsDocumentRestController extends RestControllerAbstractClass<
                 ),
                 service
         );
+        studentsService = service;
     }
 
     @GetMapping("/{id}")
@@ -56,16 +62,46 @@ public class StudentsDocumentRestController extends RestControllerAbstractClass<
         return super.getAll(includeDeleted, page, pageSize, sortBy, sortOrder);
     }
 
-    @PostMapping
-    @Override
-    public ResponseEntity<StudentsDocumentDTO> post(@RequestBody StudentsDocumentDTO studentsDocumentDTO) {
-        return super.post(studentsDocumentDTO);
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<StudentsDocumentDTO> post(
+            @ApiParam(type = "file", required = true, example = "null")
+            @RequestParam("file")
+            MultipartFile file,
+            @ApiParam(type = "number", required = true, example = "0")
+            @RequestParam("documentTypeId")
+            Long documentTypeId,
+            @ApiParam(type = "number", required = true, example = "0")
+            @RequestParam("studentId")
+            Long studentId
+    ) throws Exception {
+        return ResponseEntity.ok(new StudentsDocumentDTO(studentsService.postStudentsDocument(file, documentTypeId, studentId)));
     }
 
-    @PutMapping
+    @PutMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<StudentsDocumentDTO> put(
+            @ApiParam(type = "number", required = true, example = "0")
+            @RequestParam("id")
+            Long id,
+            @ApiParam(type = "file", required = true, example = "null")
+            @RequestParam("file")
+            MultipartFile file,
+            @ApiParam(type = "number", required = true, example = "0")
+            @RequestParam("documentTypeId")
+            Long documentTypeId,
+            @ApiParam(type = "number", required = true, example = "0")
+            @RequestParam("studentId")
+            Long studentId
+    ) throws Exception {
+        return ResponseEntity.ok(new StudentsDocumentDTO(studentsService.putStudentsDocument(id, file, documentTypeId, studentId)));
+    }
+
+    public ResponseEntity<StudentsDocumentDTO> post(@RequestBody StudentsDocumentDTO studentsDocumentDTO) {
+        return ResponseEntity.badRequest().build();
+    }
+
     @Override
     public ResponseEntity<StudentsDocumentDTO> put(@RequestBody StudentsDocumentDTO studentsDocumentDTO) {
-        return super.put(studentsDocumentDTO);
+        return ResponseEntity.badRequest().build();
     }
 
     @DeleteMapping("/{id}")
