@@ -31,7 +31,8 @@ public class Admin extends BaseAbstractClass implements ApplicationUser {
                 new ExamEnrolmentCreateAndEdit(),
                 new TeacherCreate(),
                 new TeacherDelete(),
-                new ExamPeriodCreateAndEdit()
+                new ExamPeriodCreateAndEdit(),
+                new UserRegisterTokenGenerate()
         );
     }
 
