@@ -16,8 +16,9 @@ public class StudentRestService extends RestServiceAbstractClass<Student> {
     @Override
     protected Student applyPutChangesToEntity(Student originalEntity, Student changedEntity) {
 
+        changedEntity.getUserGeneralData().setPassword(originalEntity.getUserGeneralData().getPassword());
         originalEntity.setUserGeneralData(changedEntity.getUserGeneralData());
-        originalEntity.setStudentsAccount(changedEntity.getStudentsAccount());
+        //originalEntity.setStudentsAccount(changedEntity.getStudentsAccount());
 
         return originalEntity;
     }
