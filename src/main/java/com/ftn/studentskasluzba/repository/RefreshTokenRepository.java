@@ -10,7 +10,7 @@ import java.util.Collection;
 @Repository
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, String> {
     @Query(
-            value = "SELECT * FROM REFRESH_TOKEN WHERE expire_time < NOW()",
+            value = "SELECT * FROM refresh_token WHERE expire_time < NOW()",
             nativeQuery = true
     )
     Collection<RefreshToken> getExpiredTokens();
