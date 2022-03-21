@@ -62,6 +62,12 @@ public class StudentController {
                 .map(ExamDTO::new).collect(Collectors.toSet()) ,HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/exams/passed")
+    public ResponseEntity getPassedExams(@PathVariable("id") Long id) {
+
+        return new ResponseEntity<>(studentService.getPassedExams(id).stream().map(ExamEnrolmentDTO::new).collect(Collectors.toSet()), HttpStatus.OK);
+    }
+
     @PostMapping("/{id}/exams/{examId}")
     public ResponseEntity getExams(@PathVariable("id") Long id, @PathVariable("examId") Long examId) {
         ExamEnrolment examEnrolment = studentService.examEnroll(id, examId);

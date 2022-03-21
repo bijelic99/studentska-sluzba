@@ -12,4 +12,12 @@ public class AdminRestService extends RestServiceAbstractClass<Admin>{
     public AdminRestService(AdminRepository repository) {
         super(repository, new Admin());
     }
+
+    @Override
+    protected Admin applyPutChangesToEntity(Admin originalEntity, Admin changedEntity) {
+        changedEntity.setDeleted(originalEntity.getDeleted());
+        changedEntity.setId(originalEntity.getId());
+        changedEntity.getUserGeneralData().setPassword(originalEntity.getUserGeneralData().getPassword());
+        return changedEntity;
+    }
 }

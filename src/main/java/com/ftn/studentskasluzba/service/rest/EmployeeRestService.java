@@ -15,6 +15,7 @@ public class EmployeeRestService extends RestServiceAbstractClass<Employee> {
 
     @Override
     protected Employee applyPutChangesToEntity(Employee originalEntity, Employee changedEntity) {
+        changedEntity.getUserGeneralData().setPassword(originalEntity.getUserGeneralData().getPassword());
         originalEntity.setUserGeneralData(changedEntity.getUserGeneralData());
         return originalEntity;
     }

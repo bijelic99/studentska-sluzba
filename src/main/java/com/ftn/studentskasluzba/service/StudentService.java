@@ -75,9 +75,9 @@ public class StudentService {
         Optional<CourseEnrolment> possibleCourseEnrolment = student.getCourseEnrolments().stream()
                 .filter(ce -> ce.getCourse().equals(exam.getCourse())).findFirst();
 
-        if(possibleCourseEnrolment.isPresent() && student.getStudentsAccount().getAmount() > exam.getExamEnrolmentFee()) {
+        if (possibleCourseEnrolment.isPresent() && student.getStudentsAccount().getAmount() > exam.getExamEnrolmentFee()) {
             for (ExamEnrolment examEnrolment : possibleCourseEnrolment.get().getExamEnrolments()) {
-                if(examEnrolment.getExam().equals(exam))
+                if (examEnrolment.getExam().equals(exam))
                     return null;
             }
 
@@ -135,7 +135,7 @@ public class StudentService {
         Student s = studentRepository.getOne(id);
         StudentsAccount account = s.getStudentsAccount();
         if (account != null) {
-            if(account.getAmount() > expense.getAmount()) {
+            if (account.getAmount() > expense.getAmount()) {
                 account.setAmount(account.getAmount() - expense.getAmount());
                 expense.setAccount(account);
                 account.getExpenses().add(expense);
@@ -153,6 +153,16 @@ public class StudentService {
         return courseEnrolmentRepository.findAll()
                 .stream().filter(courseEnrolment -> courseEnrolment.getStudent().equals(student))
                 .map(CourseEnrolment::getAdditionalPointsEnrolments).flatMap(Collection::stream).collect(Collectors.toSet());
+    }
+
+    public Set<ExamEnrolment> getPassedExams(Long id) {
+        return studentRepository
+                .getOne(id)
+                .getCourseEnrolments()
+                .stream()
+                .flatMap(courseEnrolment -> courseEnrolment.getExamEnrolments().stream())
+                .filter(examEnrolment -> examEnrolment.getGrade() != null && examEnrolment.getGrade() > 5)
+                .collect(Collectors.toSet());
     }
 
 }
